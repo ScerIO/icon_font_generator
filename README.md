@@ -1,8 +1,10 @@
-## Flutter Font Generator
+## Flutter Icon Font Generator
+
+![Pub](https://img.shields.io/pub/v/icon_font_generator)
 
 Convert all *.svg icons from dir to icon-font (.ttf) and generates flutter compatible dart class. 
 
-Abstraction layer for NodeJspackage `icon-font-generator`
+Abstraction layer for NodeJs package `icon-font-generator`
 
 ## Requirements
 Node.JS v11+
