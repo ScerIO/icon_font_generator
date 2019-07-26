@@ -1,0 +1,16 @@
+author: "Serge Shkurko <SergeShkurko@outlook.com>"
+homepage: "https://github.com/rbcprolabs/icon_font_generator"
+name: "icon_font_generator"
+description: "Convert all *.svg icons from dir to icon-font (.ttf) and generates flutter compatible dart class."
+version: "0.0.1"
+dependencies: 
+  args: "^1.5.2"
+  meta: "^1.1.6"
+  path: "^1.6.2"
+  register: "^1.0.1"
+dev_dependencies: 
+  pedantic: "^1.5.0"
+environment: 
+  sdk: ">=2.3.0-dev.0.5 <3.0.0"
+executables: 
+  icon_font_generator: "icon_font_generator"
