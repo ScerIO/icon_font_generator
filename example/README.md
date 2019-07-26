@@ -72,7 +72,7 @@ flutter:
         - asset: lib/icon_font/ui_icons.ttf
 ```
 
-Still you can usage it with DPM (Dart Package Manager)
+Still you can usage it with [DPM](https://github.com/rbcprolabs/dpm) (Dart Package Manager)
 
 For example:
 1. `$ pub global activate dpm`

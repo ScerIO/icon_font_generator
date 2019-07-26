@@ -99,3 +99,20 @@ flutter:
       fonts:
         - asset: lib/src/icon_font/ui_icons.ttf
 ```
+
+Still you can usage it with [DPM](https://github.com/rbcprolabs/dpm) (Dart Package Manager)
+
+For example:
+1. `$ pub global activate dpm`
+2. `$ dpm add --dev icon_font_generator`
+3. Next add script to pubspec.yaml:
+```yaml
+...
+scripts:
+  generate_icons: icon_font_generator 
+    --from=icons 
+    --class-name=UiIcons 
+    --out-font=lib/icon_font/ui_icons.ttf 
+    --out-flutter=lib/widgets/icons.dart
+```
+4. And always perform with the command: `dpm generate_icons`

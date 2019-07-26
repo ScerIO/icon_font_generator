@@ -3,6 +3,10 @@
 [comment]: <> (### Breaking Changes or ### New Features)
 [comment]: <> (* Change description)
 
+## 0.0.5
+
+* Update readme
+
 ## 0.0.4
 
 * Readme fix
