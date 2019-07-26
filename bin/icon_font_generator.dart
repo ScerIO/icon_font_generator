@@ -100,7 +100,12 @@ class GenerateCommand extends Command {
       runInShell: true,
     );
     await stdout.addStream(nodeInstallDependencies.stdout);
-    await stderr.addStream(nodeInstallDependencies.stderr);
+
+    // icon-font-generator reguires package: `ttf2woff2`
+    // we do not need him and requires a python
+    final String gypErr = 'gyp ERR!';
+    await stderr.addStream(nodeInstallDependencies.stderr
+        .where((bytes) => !utf8.decode(bytes).contains(gypErr)));
 
     final tempSourceDirectory =
         Directory.fromUri(genRootDir.uri.resolve('temp_icons'));
@@ -163,12 +168,9 @@ class GenerateCommand extends Command {
       }
       return utf8.encode(message);
     }));
-    final String stdlib = 'Invalid member of stdlib', gyp = 'gyp ERR!';
-    await stderr.addStream(generateFont.stderr.where((bytes) {
-      final input = utf8.decode(bytes);
-      return !input.contains(stdlib) &&
-          !input.contains(gyp);
-    }));
+    final String stdlib = 'Invalid member of stdlib';
+    await stderr.addStream(generateFont.stderr
+        .where((bytes) => !utf8.decode(bytes).contains(stdlib)));
 
     await File(path.join(
       tempOutDirectory.path,

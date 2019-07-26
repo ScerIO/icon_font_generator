@@ -5,6 +5,10 @@
 
 ## 0.0.2
 
+* Hide error message
+
+## 0.0.2
+
 * Fix running as global package
 
 ## 0.0.1
