@@ -16,13 +16,15 @@ $ pub global activate icon_font_generator
 ```
 
 ## Params:
-- `--from` - Input dir with svg's
-- `--out-font` - Output icon font path (to file, for example: lib/font.ttf)
-- `--out-flutter` - Output flutter icon class (to file, for example: lib/icons.dart)
-- `--class-name` - The class name is also the font name used in pubspec.yaml (as font name)
+\* - required
+
+- `--from` * - Input dir with svg's
+- `--out-font` * - Output icon font path (to file, for example: lib/font.ttf)
+- `--out-flutter` * - Output flutter icon class (to file, for example: lib/icons.dart)
+- `--class-name` * - The class name is also the font name used in pubspec.yaml (as font name)
 - `--height` - Fixed font height value, defaults: 512
 - `--ascent` - Offset applied to the baseline, defaults: 240
-- `--package` - Name of package for generated icon data
+- `--package` - Name of package for generated icon data ([See more](https://api.flutter.dev/flutter/widgets/IconData/fontPackage.html))
 - `--indent` - Indent for generating dart file, for example: '   ', default: '  '
 - `--mono` - Make font monospace, default: true
 
@@ -42,7 +44,7 @@ project
 ```
 Run command:
 ```
-$ icon_font_generator --from=icons --class-name=UiIcons --package=project --out-font=lib/src/icon_font/ui_icons.ttf --out-flutter=lib/src/widgets/icons.dart
+$ icon_font_generator --from=icons --class-name=UiIcons --out-font=lib/src/icon_font/ui_icons.ttf --out-flutter=lib/src/widgets/icons.dart
 ```
 Generated to:
 ```
