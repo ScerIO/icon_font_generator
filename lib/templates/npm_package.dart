@@ -1,5 +1,6 @@
+const String npmPackageTemplate = '''
 {
-  "name": "icon-font-generato",
+  "name": "icon-font-generator",
   "repository": "https://github.com/rbcprolabs/icon_font_generator",
   "private": true,
   "version": "1.0.0",
@@ -8,3 +9,4 @@
     "icon-font-generator": "^2.1.10"
   }
 }
+''';

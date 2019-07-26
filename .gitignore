@@ -2,6 +2,7 @@ node_modules/*
 dist/*
 map/*
 package-lock.json
+package.json
 yarn.lock
 
 # Flutter/Dart/Pub related

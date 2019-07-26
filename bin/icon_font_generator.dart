@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:icon_font_generator/generate_flutter_class.dart';
+import 'package:icon_font_generator/templates/npm_package.dart';
 import 'package:icon_font_generator/utils.dart';
 import 'package:path/path.dart' as path;
 
@@ -87,6 +88,11 @@ class GenerateCommand extends Command {
 
     final genRootDir = Directory.fromUri(Platform.script.resolve('..'));
 
+    final npmPackage = File(path.join(genRootDir.path, 'package.json'));
+    if (!npmPackage.existsSync()) {
+      await npmPackage.writeAsString(npmPackageTemplate);
+    }
+
     final nodeInstallDependencies = await Process.start(
       'npm',
       ['install'],
@@ -157,8 +163,12 @@ class GenerateCommand extends Command {
       }
       return utf8.encode(message);
     }));
-    await stderr.addStream(generateFont.stderr.where(
-        (bytes) => !utf8.decode(bytes).contains('Invalid member of stdlib')));
+    final String stdlib = 'Invalid member of stdlib', gyp = 'gyp ERR!';
+    await stderr.addStream(generateFont.stderr.where((bytes) {
+      final input = utf8.decode(bytes);
+      return !input.contains(stdlib) &&
+          !input.contains(gyp);
+    }));
 
     await File(path.join(
       tempOutDirectory.path,
