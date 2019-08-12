@@ -7,7 +7,7 @@ Convert all *.svg icons from dir to icon-font (.ttf) and generates flutter compa
 Abstraction layer for NodeJs package `icon-font-generator`
 
 ## Requirements
-*Node.JS v11.8* On versions: 11.6, 12+ not works
+Node.JS v11+
 
 ## Install:
 
