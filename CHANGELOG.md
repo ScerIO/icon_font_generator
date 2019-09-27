@@ -3,6 +3,11 @@
 [comment]: <> (### Breaking Changes or ### New Features)
 [comment]: <> (* Change description)
 
+## 1.0.0
+
+* Added new flag `normalize` - Normalize icons sizes (Default: false) 
+* Fixed bug, when an error occurs and the conversion no longer occurs (https://github.com/rbcprolabs/icon_font_generator/issues/3)
+
 ## 0.0.7
 
 * Update requirements in readme

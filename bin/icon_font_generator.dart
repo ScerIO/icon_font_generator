@@ -60,6 +60,11 @@ class GenerateCommand extends Command {
         'mono',
         help: 'Make font monospace',
         defaultsTo: true,
+      )
+      ..addFlag(
+        'normalize',
+        help: 'Normalize icons sizes',
+        defaultsTo: false,
       );
   }
 
@@ -93,6 +98,21 @@ class GenerateCommand extends Command {
       await npmPackage.writeAsString(npmPackageTemplate);
     }
 
+    final tempSourceDirectory =
+        Directory.fromUri(genRootDir.uri.resolve('temp_icons'));
+    final tempOutDirectory =
+        Directory.fromUri(genRootDir.uri.resolve('temp_font'));
+    final iconsMap = File.fromUri(genRootDir.uri.resolve('map.json'));
+    if (tempSourceDirectory.existsSync()) {
+      await tempSourceDirectory.delete(recursive: true);
+    }
+    if (tempOutDirectory.existsSync()) {
+      await tempOutDirectory.delete(recursive: true);
+    }
+    if (iconsMap.existsSync()) {
+      await iconsMap.delete();
+    }
+
     final nodeInstallDependencies = await Process.start(
       'npm',
       ['install'],
@@ -107,10 +127,6 @@ class GenerateCommand extends Command {
     await stderr.addStream(nodeInstallDependencies.stderr
         .where((bytes) => !utf8.decode(bytes).contains(gypErr)));
 
-    final tempSourceDirectory =
-        Directory.fromUri(genRootDir.uri.resolve('temp_icons'));
-    final tempOutDirectory =
-        Directory.fromUri(genRootDir.uri.resolve('temp_font'));
     final sourceIconsDirectory = Directory.fromUri(Directory.current.uri
         .resolve(argResults['from'].replaceAll('\\', '/')));
     final outIconsFile = File.fromUri(Directory.current.uri
@@ -118,12 +134,8 @@ class GenerateCommand extends Command {
     final outFlutterClassFile = File.fromUri(Directory.current.uri
         .resolve(argResults['out-flutter'].replaceAll('\\', '/')));
 
-    if (!tempSourceDirectory.existsSync()) {
-      await tempSourceDirectory.create();
-    }
-    if (!tempOutDirectory.existsSync()) {
-      await tempOutDirectory.create();
-    }
+    await tempSourceDirectory.create();
+    await tempOutDirectory.create();
 
     await copyDirectory(
       sourceIconsDirectory,
@@ -132,8 +144,10 @@ class GenerateCommand extends Command {
 
     // gen font
     final generateFont = await Process.start(
-      path.join(genRootDir.path,
-          'node_modules/.bin/icon-font-generator${Platform.isWindows ? '.cmd' : ''}'),
+      path.join(
+        genRootDir.path,
+        'node_modules/.bin/icon-font-generator${Platform.isWindows ? '.cmd' : ''}',
+      ),
       [
         path.absolute(path.join(tempSourceDirectory.path, '*.svg')),
         '--codepoint',
@@ -148,6 +162,8 @@ class GenerateCommand extends Command {
         argResults['ascent'],
         '--mono',
         argResults['mono'].toString(),
+        '--normalize',
+        argResults['normalize'].toString(),
         '--name',
         path.basenameWithoutExtension(argResults['out-font']),
         '--out',
@@ -180,8 +196,6 @@ class GenerateCommand extends Command {
     if (!outIconsFile.existsSync()) {
       await outIconsFile.create(recursive: true);
     }
-
-    final iconsMap = File.fromUri(genRootDir.uri.resolve('map.json'));
 
     final generateClassResult = await generateFlutterClass(
       iconMap: iconsMap,
