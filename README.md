@@ -30,9 +30,7 @@ $ pub global activate icon_font_generator
 - `--normalize` - Normalize icons sizes, default: false
 
 ## Example
-*Atention*: Supports svg file names only in [`snake_case`](https://chaseonsoftware.com/most-common-programming-case-types/#snake_case) (like a `my_sepparated_icon_name.svg`, but not `my-icon.svg`, `my.icon.svg` etc)
-
-File structire:
+File structure:
 ```
 project
 └───icons
@@ -47,9 +45,9 @@ project
 ```
 Run command:
 ```
-$ icon_font_generator --from=icons --class-name=UiIcons --out-font=lib/src/icon_font/ui_icons.ttf --out-flutter=lib/src/widgets/icons.dart
+$ icon_font_generator --from=icons --class-name=UiIcons --out-font=lib/icon_font/ui_icons.ttf --out-flutter=lib/widgets/icons.dart
 ```
-Generated to:
+Generates:
 ```
 project
 └───icons
