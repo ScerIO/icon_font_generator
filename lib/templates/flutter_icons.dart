@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 
 @immutable
 class _%CLASS_NAME%Data extends IconData {
-%INDENT%const %CLASS_NAME%Data(int codePoint)
+%INDENT%const _%CLASS_NAME%Data(int codePoint)
 %INDENT%%INDENT%%INDENT%: super(
 %INDENT%%INDENT%%INDENT%%INDENT%%INDENT%codePoint,
 %INDENT%%INDENT%%INDENT%%INDENT%%INDENT%fontFamily: '%CLASS_NAME%',%PACKAGE%
