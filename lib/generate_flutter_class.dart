@@ -43,7 +43,7 @@ Future<GenerateResult> generateFlutterClass({
                       indent: indent,
                     ),
             )
-            .replaceFirst('%CONTENT%', dartIconsEntryes.join('\n')),
+            .replaceFirst('%CONTENT%', dartIconsEntries.join('\n')),
         className: className,
         indent: indent,
       ),
