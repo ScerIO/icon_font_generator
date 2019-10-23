@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:meta/meta.dart';
 import 'package:icon_font_generator/templates/flutter_icons.dart' as template;
-import 'package:register/register.dart';
+import 'package:recase/recase.dart';
 
 class GenerateResult {
   GenerateResult(this.content, this.iconsCount);
@@ -22,7 +22,7 @@ Future<GenerateResult> generateFlutterClass({
   final dartIconsEntries = icons.entries.map(
     (entry) => someReplace(
       template.icon
-          .replaceFirst('%ICON_NAME%', Register(entry.key).camel)
+          .replaceFirst('%ICON_NAME%', ReCase(entry.key).camelCase)
           .replaceFirst('%ICON_CODE%', entry.value.replaceAll('\\', '')),
       className: className,
       indent: indent,

@@ -6,7 +6,7 @@ description: Convert all *.svg icons from dir to icon-font (.ttf) and generates 
 environment: 
   sdk: '>=2.3.0-dev.0.5 <3.0.0'
 dependencies: 
-  register: ^1.0.1
+  recase: ^2.0.1
   args: ^1.5.2
   meta: ^1.1.6
   path: ^1.6.4
