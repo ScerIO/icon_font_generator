@@ -19,7 +19,7 @@ Future<GenerateResult> generateFlutterClass({
 }) async {
   final Map<String, dynamic> icons = jsonDecode(await iconMap.readAsString());
 
-  final dartIconsEntryes = icons.entries.map(
+  final dartIconsEntries = icons.entries.map(
     (entry) => someReplace(
       template.icon
           .replaceFirst('%ICON_NAME%', Register(entry.key).camel)
@@ -43,7 +43,7 @@ Future<GenerateResult> generateFlutterClass({
                       indent: indent,
                     ),
             )
-            .replaceFirst('%CONTENT%', dartIconsEntryes.join('\n\n')),
+            .replaceFirst('%CONTENT%', dartIconsEntries.join('\n')),
         className: className,
         indent: indent,
       ),
