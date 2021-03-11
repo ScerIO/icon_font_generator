@@ -1,8 +1,10 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
 import 'package:flutter/widgets.dart';
 
 @immutable
-class UiIconsData extends IconData {
-  const UiIconsData(int codePoint)
+class _UiIconsData extends IconData {
+  const _UiIconsData(int codePoint)
       : super(
           codePoint,
           fontFamily: 'UiIcons',
@@ -13,12 +15,9 @@ class UiIconsData extends IconData {
 class UiIcons {
   UiIcons._();
 
-  // Generated code: do not hand-edit.
-  static const IconData account = UiIconsData(0xe000);
-
-  static const IconData arrowLeft = UiIconsData(0xe001);
-
-  static const IconData arrowRight = UiIconsData(0xe002);
-
-  static const IconData collection = UiIconsData(0xe003);
+  
+  static const IconData account = _UiIconsData(0xe000);
+  static const IconData arrowLeft = _UiIconsData(0xe001);
+  static const IconData arrowRight = _UiIconsData(0xe002);
+  static const IconData collection = _UiIconsData(0xe003);
 }

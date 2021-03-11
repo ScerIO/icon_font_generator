@@ -82,10 +82,10 @@ class GenerateCommand extends Command {
       print('Please install Node.JS. Recommended v10+');
     }
 
-    if (argResults['from'] == null ||
-        argResults['out-font'] == null ||
-        argResults['out-flutter'] == null ||
-        argResults['class-name'] == null) {
+    if (argResults!['from'] == null ||
+        argResults!['out-font'] == null ||
+        argResults!['out-flutter'] == null ||
+        argResults!['class-name'] == null) {
       print('--from, --out-font, --out-flutter, '
           '--class-name args required!');
       exit(1);
@@ -121,18 +121,18 @@ class GenerateCommand extends Command {
     );
     await stdout.addStream(nodeInstallDependencies.stdout);
 
-    // icon-font-generator reguires package: `ttf2woff2`
+    // icon-font-generator requires package: `ttf2woff2`
     // we do not need him and requires a python
     final String gypErr = 'gyp ERR!';
     await stderr.addStream(nodeInstallDependencies.stderr
         .where((bytes) => !utf8.decode(bytes).contains(gypErr)));
 
     final sourceIconsDirectory = Directory.fromUri(Directory.current.uri
-        .resolve(argResults['from'].replaceAll('\\', '/')));
+        .resolve(argResults!['from'].replaceAll('\\', '/')));
     final outIconsFile = File.fromUri(Directory.current.uri
-        .resolve(argResults['out-font'].replaceAll('\\', '/')));
+        .resolve(argResults!['out-font'].replaceAll('\\', '/')));
     final outFlutterClassFile = File.fromUri(Directory.current.uri
-        .resolve(argResults['out-flutter'].replaceAll('\\', '/')));
+        .resolve(argResults!['out-flutter'].replaceAll('\\', '/')));
 
     await tempSourceDirectory.create();
     await tempOutDirectory.create();
@@ -157,15 +157,15 @@ class GenerateCommand extends Command {
         '--html',
         'false',
         '--height',
-        argResults['height'],
+        argResults!['height'],
         '--ascent',
-        argResults['ascent'],
+        argResults!['ascent'],
         '--mono',
-        argResults['mono'].toString(),
+        argResults!['mono'].toString(),
         '--normalize',
-        argResults['normalize'].toString(),
+        argResults!['normalize'].toString(),
         '--name',
-        path.basenameWithoutExtension(argResults['out-font']),
+        path.basenameWithoutExtension(argResults!['out-font']),
         '--out',
         path.absolute(tempOutDirectory.path),
         '--jsonpath',
@@ -184,13 +184,13 @@ class GenerateCommand extends Command {
       }
       return utf8.encode(message);
     }));
-    final String stdlib = 'Invalid member of stdlib';
+    final stdlib = 'Invalid member of stdlib';
     await stderr.addStream(generateFont.stderr
         .where((bytes) => !utf8.decode(bytes).contains(stdlib)));
 
     await File(path.join(
       tempOutDirectory.path,
-      path.basename(argResults['out-font']),
+      path.basename(argResults!['out-font']),
     )).copy(outIconsFile.path);
 
     if (!outIconsFile.existsSync()) {
@@ -199,9 +199,9 @@ class GenerateCommand extends Command {
 
     final generateClassResult = await generateFlutterClass(
       iconMap: iconsMap,
-      className: argResults['class-name'],
-      packageName: argResults['package'],
-      indent: argResults['indent'],
+      className: argResults!['class-name'],
+      packageName: argResults!['package'],
+      indent: argResults!['indent'],
     );
 
     await outFlutterClassFile.writeAsString(generateClassResult.content);

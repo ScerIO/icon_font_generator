@@ -1,6 +1,6 @@
 # Example
 
-File structire:
+File structure:
 ```
 project
 └───icons
@@ -17,7 +17,7 @@ Run command:
 ```
 $ icon_font_generator --from=icons --class-name=UiIcons --out-font=lib/icon_font/ui_icons.ttf --out-flutter=lib/widgets/icons.dart
 ```
-Generated to:
+Generates:
 ```
 project
 └───icons
@@ -35,10 +35,12 @@ project
 ```
 Generated icons.dart:
 ```dart
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
 import 'package:flutter/widgets.dart';
 
 @immutable
-class UiIconsData extends IconData {
+class _UiIconsData extends IconData {
   const UiIconsData(int codePoint)
       : super(
           codePoint,
@@ -50,16 +52,11 @@ class UiIconsData extends IconData {
 class UiIcons {
   UiIcons._();
 
-  // Generated code: do not hand-edit.
-  static const IconData account = UiIconsData(0xe000);
-
-  static const IconData arrowLeft = UiIconsData(0xe001);
-
-  static const IconData arrowRight = UiIconsData(0xe002);
-
-  static const IconData collection = UiIconsData(0xe003);
+  static const IconData account = _UiIconsData(0xe000);
+  static const IconData arrowLeft = _UiIconsData(0xe001);
+  static const IconData arrowRight = _UiIconsData(0xe002);
+  static const IconData collection = _UiIconsData(0xe003);
 }
-
 ```
 And also need add font to pubspec.yaml:
 ```yaml
@@ -69,22 +66,5 @@ flutter:
   fonts:
     - family: UiIcons
       fonts:
-        - asset: lib/icon_font/ui_icons.ttf
+        - asset: lib/src/icon_font/ui_icons.ttf
 ```
-
-Still you can usage it with [DPM](https://github.com/rbcprolabs/dpm) (Dart Package Manager)
-
-For example:
-1. `$ pub global activate dpm`
-2. `$ dpm add --dev icon_font_generator`
-3. Next add script to pubspec.yaml:
-```yaml
-...
-scripts:
-  generate_icons: icon_font_generator 
-    --from=icons 
-    --class-name=UiIcons 
-    --out-font=lib/icon_font/ui_icons.ttf 
-    --out-flutter=lib/widgets/icons.dart
-```
-4. And always perform with the command: `dpm generate_icons`

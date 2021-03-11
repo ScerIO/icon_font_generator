@@ -12,9 +12,9 @@ class GenerateResult {
 }
 
 Future<GenerateResult> generateFlutterClass({
-  @required File iconMap,
-  @required String className,
-  @required String packageName,
+  required File iconMap,
+  required String className,
+  required String? packageName,
   String indent = '  ',
 }) async {
   final Map<String, dynamic> icons = jsonDecode(await iconMap.readAsString());
@@ -52,8 +52,8 @@ Future<GenerateResult> generateFlutterClass({
 
 String someReplace(
   String template, {
-  @required String indent,
-  @required String className,
+  required String indent,
+  required String className,
 }) =>
     template
         .replaceAll('%INDENT%', indent)
