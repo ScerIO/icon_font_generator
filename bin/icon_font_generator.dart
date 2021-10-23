@@ -43,7 +43,7 @@ class GenerateCommand extends Command {
         defaultsTo: '512',
       )
       ..addOption(
-        'ascent',
+        'descent',
         help: 'Offset applied to the baseline',
         defaultsTo: '240',
       )
@@ -55,11 +55,6 @@ class GenerateCommand extends Command {
         'indent',
         help: 'Indent for generating dart file, for example: ' ' ',
         defaultsTo: '  ',
-      )
-      ..addFlag(
-        'mono',
-        help: 'Make font monospace',
-        defaultsTo: true,
       )
       ..addFlag(
         'normalize',
@@ -102,7 +97,10 @@ class GenerateCommand extends Command {
         Directory.fromUri(genRootDir.uri.resolve('temp_icons'));
     final tempOutDirectory =
         Directory.fromUri(genRootDir.uri.resolve('temp_font'));
-    final iconsMap = File.fromUri(genRootDir.uri.resolve('map.json'));
+    final iconsMap = File.fromUri(genRootDir.uri.resolve(path.join(
+      tempOutDirectory.path,
+      'ui_icons.json'
+    )));
     if (tempSourceDirectory.existsSync()) {
       await tempSourceDirectory.delete(recursive: true);
     }
@@ -146,31 +144,23 @@ class GenerateCommand extends Command {
     final generateFont = await Process.start(
       path.join(
         genRootDir.path,
-        'node_modules/.bin/icon-font-generator${Platform.isWindows ? '.cmd' : ''}',
+        'node_modules/.bin/fantasticon${Platform.isWindows ? '.cmd' : ''}',
       ),
       [
-        path.absolute(path.join(tempSourceDirectory.path, '*.svg')),
-        '--codepoint',
-        '0xe000',
-        '--css',
-        'false',
-        '--html',
-        'false',
-        '--height',
+        path.absolute(tempSourceDirectory.path),
+        '--asset-types',
+        'json',
+        '--font-height',
         argResults!['height'],
-        '--ascent',
-        argResults!['ascent'],
-        '--mono',
-        argResults!['mono'].toString(),
+        '--descent',
+        argResults!['descent'],
         '--normalize',
         argResults!['normalize'].toString(),
         '--name',
         path.basenameWithoutExtension(argResults!['out-font']),
-        '--out',
+        '--output',
         path.absolute(tempOutDirectory.path),
-        '--jsonpath',
-        'map.json',
-        '--types',
+        '--font-types',
         'ttf',
       ],
       workingDirectory: genRootDir.path,
@@ -212,6 +202,5 @@ class GenerateCommand extends Command {
 
     await tempSourceDirectory.delete(recursive: true);
     await tempOutDirectory.delete(recursive: true);
-    await iconsMap.delete();
   }
 }
