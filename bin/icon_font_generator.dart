@@ -60,6 +60,11 @@ class GenerateCommand extends Command {
         'normalize',
         help: 'Normalize icons sizes',
         defaultsTo: false,
+      )
+      ..addFlag(
+        'yarn',
+        help: 'Use yarn instead npm',
+        defaultsTo: false,
       );
   }
 
@@ -97,10 +102,8 @@ class GenerateCommand extends Command {
         Directory.fromUri(genRootDir.uri.resolve('temp_icons'));
     final tempOutDirectory =
         Directory.fromUri(genRootDir.uri.resolve('temp_font'));
-    final iconsMap = File.fromUri(genRootDir.uri.resolve(path.join(
-      tempOutDirectory.path,
-      'ui_icons.json'
-    )));
+    final iconsMap = File.fromUri(genRootDir.uri
+        .resolve(path.join(tempOutDirectory.path, 'ui_icons.json')));
     if (tempSourceDirectory.existsSync()) {
       await tempSourceDirectory.delete(recursive: true);
     }
@@ -111,9 +114,11 @@ class GenerateCommand extends Command {
       await iconsMap.delete();
     }
 
+    stdout.writeln('Installing npm dependencies...');
+
     final nodeInstallDependencies = await Process.start(
-      'npm',
-      ['install'],
+      (argResults!['yarn'] as bool) ? 'yarn' : 'npm',
+      ['install', '--no-fund'],
       workingDirectory: genRootDir.path,
       runInShell: true,
     );
@@ -121,7 +126,7 @@ class GenerateCommand extends Command {
 
     // icon-font-generator requires package: `ttf2woff2`
     // we do not need him and requires a python
-    final String gypErr = 'gyp ERR!';
+    final gypErr = 'gyp ERR!';
     await stderr.addStream(nodeInstallDependencies.stderr
         .where((bytes) => !utf8.decode(bytes).contains(gypErr)));
 
@@ -148,8 +153,6 @@ class GenerateCommand extends Command {
       ),
       [
         path.absolute(tempSourceDirectory.path),
-        '--asset-types',
-        'json',
         '--font-height',
         argResults!['height'],
         '--descent',
@@ -160,6 +163,8 @@ class GenerateCommand extends Command {
         path.basenameWithoutExtension(argResults!['out-font']),
         '--output',
         path.absolute(tempOutDirectory.path),
+        '--asset-types',
+        'json',
         '--font-types',
         'ttf',
       ],

@@ -1,3 +1,12 @@
+## 3.0.0
+
+* Replaced [icon-font-generator] with [fantasticon] [pull#14](https://github.com/rbcprolabs/icon_font_generator/pull/14)
+* Attribute ascent replaced by descent
+* Attribute mono removed
+* Attribute yarn added
+* Added const in dart class template [issue#16](https://github.com/rbcprolabs/icon_font_generator/issues/16)
+* Upgrade dependencies
+
 ## 2.0.0
 
 * Null-safety

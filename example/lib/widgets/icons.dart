@@ -13,11 +13,10 @@ class _UiIconsData extends IconData {
 
 @immutable
 class UiIcons {
-  UiIcons._();
+  const UiIcons._();
 
-  
-  static const IconData account = _UiIconsData(0xe000);
-  static const IconData arrowLeft = _UiIconsData(0xe001);
-  static const IconData arrowRight = _UiIconsData(0xe002);
-  static const IconData collection = _UiIconsData(0xe003);
+  static const IconData account = _UiIconsData(0xf101);
+  static const IconData arrowLeft = _UiIconsData(0xf102);
+  static const IconData arrowRight = _UiIconsData(0xf103);
+  static const IconData collection = _UiIconsData(0xf104);
 }

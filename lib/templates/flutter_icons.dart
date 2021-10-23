@@ -14,9 +14,8 @@ class _%CLASS_NAME%Data extends IconData {
 
 @immutable
 class %CLASS_NAME% {
-%INDENT%%CLASS_NAME%._();
+%INDENT%const %CLASS_NAME%._();
 
-%INDENT%
 %CONTENT%
 }
 ''';
