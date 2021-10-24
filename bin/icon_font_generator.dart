@@ -35,7 +35,7 @@ class GenerateCommand extends Command {
       )
       ..addOption(
         'class-name',
-        help: 'Flutter class name \ family for generating file',
+        help: 'Flutter class name / family for generating file',
       )
       ..addOption(
         'height',
@@ -65,6 +65,12 @@ class GenerateCommand extends Command {
         'yarn',
         help: 'Use yarn instead npm',
         defaultsTo: false,
+      )
+      ..addOption(
+        'naming-strategy',
+        help: 'Icons name strategy',
+        defaultsTo: 'snake',
+        allowed: {'camel', 'snake'},
       );
   }
 
@@ -196,6 +202,7 @@ class GenerateCommand extends Command {
       iconMap: iconsMap,
       className: argResults!['class-name'],
       packageName: argResults!['package'],
+      namingStrategy: argResults!['naming-strategy'],
       indent: argResults!['indent'],
     );
 
