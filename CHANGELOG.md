@@ -4,6 +4,7 @@
 - Replace pedantic with lints
 - Add naming strategy option namely - snake, camel
 - Update README with new/deleted flags
+- Fix iconsMap hardcoded `ui_icons.json` which prevented custom out-font name
 
 ## 3.0.0
 
