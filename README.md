@@ -4,7 +4,7 @@
 
 Convert all *.svg icons from dir to icon-font (.ttf) and generates flutter compatible dart class. 
 
-Abstraction layer for NodeJs package `icon-font-generator`
+Abstraction layer for NodeJs package `fantasticon`.
 
 ## Requirements
 Node.JS v11+
@@ -28,6 +28,7 @@ $ pub global activate icon_font_generator
 - `--indent` - Indent for generating dart file, for example: '   ', default: '  '
 - `--normalize` - Normalize icons sizes, default: false
 - `--yarn` - Usage yarn instead npm, default: false
+- `--naming-strategy` - Icons name strategy: snake (yaru_icon) or camel (yaruIcon), default: snake
 
 ## Example
 File structure:

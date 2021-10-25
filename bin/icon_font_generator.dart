@@ -35,7 +35,7 @@ class GenerateCommand extends Command {
       )
       ..addOption(
         'class-name',
-        help: 'Flutter class name \ family for generating file',
+        help: 'Flutter class name / family for generating file',
       )
       ..addOption(
         'height',
@@ -65,6 +65,12 @@ class GenerateCommand extends Command {
         'yarn',
         help: 'Use yarn instead npm',
         defaultsTo: false,
+      )
+      ..addOption(
+        'naming-strategy',
+        help: 'Icons name strategy',
+        defaultsTo: 'snake',
+        allowed: {'camel', 'snake'},
       );
   }
 
@@ -102,8 +108,9 @@ class GenerateCommand extends Command {
         Directory.fromUri(genRootDir.uri.resolve('temp_icons'));
     final tempOutDirectory =
         Directory.fromUri(genRootDir.uri.resolve('temp_font'));
-    final iconsMap = File.fromUri(genRootDir.uri
-        .resolve(path.join(tempOutDirectory.path, 'ui_icons.json')));
+    final iconsMap = File.fromUri(genRootDir.uri.resolve(path.join(
+        tempOutDirectory.path,
+        path.basenameWithoutExtension(argResults!['out-font']) + '.json')));
     if (tempSourceDirectory.existsSync()) {
       await tempSourceDirectory.delete(recursive: true);
     }
@@ -196,6 +203,7 @@ class GenerateCommand extends Command {
       iconMap: iconsMap,
       className: argResults!['class-name'],
       packageName: argResults!['package'],
+      namingStrategy: argResults!['naming-strategy'],
       indent: argResults!['indent'],
     );
 

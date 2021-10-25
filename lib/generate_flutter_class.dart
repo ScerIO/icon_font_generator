@@ -15,6 +15,7 @@ Future<GenerateResult> generateFlutterClass({
   required File iconMap,
   required String className,
   required String? packageName,
+  required String namingStrategy,
   String indent = '  ',
 }) async {
   final Map<String, dynamic> icons = jsonDecode(await iconMap.readAsString());
@@ -22,11 +23,14 @@ Future<GenerateResult> generateFlutterClass({
   final dartIconsEntries = icons.entries.map(
     (entry) => someReplace(
       template.icon
-          .replaceFirst('%ICON_NAME%', ReCase(entry.key).camelCase)
           .replaceFirst(
-            '%ICON_CODE%',
-            entry.value.toRadixString(16).toString()
-          ),
+            '%ICON_NAME%',
+            namingStrategy == 'snake'
+                ? ReCase(entry.key).snakeCase
+                : ReCase(entry.key).camelCase,
+          )
+          .replaceFirst(
+              '%ICON_CODE%', entry.value.toRadixString(16).toString()),
       className: className,
       indent: indent,
     ),
