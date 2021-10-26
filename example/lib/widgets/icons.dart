@@ -16,7 +16,7 @@ class UiIcons {
   const UiIcons._();
 
   static const IconData account = _UiIconsData(0xf101);
-  static const IconData arrowLeft = _UiIconsData(0xf102);
-  static const IconData arrowRight = _UiIconsData(0xf103);
+  static const IconData arrow_left = _UiIconsData(0xf102);
+  static const IconData arrow_right = _UiIconsData(0xf103);
   static const IconData collection = _UiIconsData(0xf104);
 }
