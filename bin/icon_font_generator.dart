@@ -108,9 +108,8 @@ class GenerateCommand extends Command {
         Directory.fromUri(genRootDir.uri.resolve('temp_icons'));
     final tempOutDirectory =
         Directory.fromUri(genRootDir.uri.resolve('temp_font'));
-    final iconsMap = File.fromUri(genRootDir.uri.resolve(path.join(
-        tempOutDirectory.path,
-        path.basenameWithoutExtension(argResults!['out-font']) + '.json')));
+    final iconsMap = File(path.join(tempOutDirectory.path,
+        path.basenameWithoutExtension(argResults!['out-font']) + '.json'));
     if (tempSourceDirectory.existsSync()) {
       await tempSourceDirectory.delete(recursive: true);
     }
@@ -139,11 +138,12 @@ class GenerateCommand extends Command {
 
     final sourceIconsDirectory = Directory.fromUri(Directory.current.uri
         .resolve(argResults!['from'].replaceAll('\\', '/')));
-    final outIconsFile = File.fromUri(Directory.current.uri
-        .resolve(argResults!['out-font'].replaceAll('\\', '/')));
-    final outFlutterClassFile = File.fromUri(Directory.current.uri
-        .resolve(argResults!['out-flutter'].replaceAll('\\', '/')));
-
+    final outIconsFile = File(Directory.fromUri(Directory.current.uri
+            .resolve(argResults!['out-font'].replaceAll('\\', '/')))
+        .path);
+    final outFlutterClassFile = File(Directory.fromUri(Directory.current.uri
+            .resolve(argResults!['out-flutter'].replaceAll('\\', '/')))
+        .path);
     await tempSourceDirectory.create();
     await tempOutDirectory.create();
 
