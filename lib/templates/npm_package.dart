@@ -7,6 +7,9 @@ const String npmPackageTemplate = '''
   "license": "MIT",
   "devDependencies": {
     "fantasticon": "^1.2.2"
+  },
+  "overrides":{
+    "colors": "1.4.0"
   }
 }
 ''';
