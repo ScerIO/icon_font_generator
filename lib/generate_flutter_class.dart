@@ -20,21 +20,39 @@ Future<GenerateResult> generateFlutterClass({
 }) async {
   final Map<String, dynamic> icons = jsonDecode(await iconMap.readAsString());
 
-  final dartIconsEntries = icons.entries.map(
-    (entry) => someReplace(
+  var dartIconsEntries = <String>{};
+  var dartIconsValues = <String>{};
+  var dartIconsNames = <String>{};
+
+  for (final entry in icons.entries) {
+    var name = namingStrategy == 'snake'
+        ? ReCase(entry.key).snakeCase
+        : ReCase(entry.key).camelCase;
+
+      dartIconsEntries.add(someReplace(
       template.icon
           .replaceFirst(
             '%ICON_NAME%',
-            namingStrategy == 'snake'
-                ? ReCase(entry.key).snakeCase
-                : ReCase(entry.key).camelCase,
+            name,
           )
           .replaceFirst(
               '%ICON_CODE%', entry.value.toRadixString(16).toString()),
       className: className,
       indent: indent,
-    ),
-  );
+    ));
+
+    dartIconsValues.add(someReplace(
+      template.value.replaceAll('%ICON_NAME%', name),
+      indent: indent,
+      className: className,
+    ));
+
+    dartIconsNames.add(someReplace(
+      template.name.replaceAll('%ICON_NAME%', name),
+      indent: indent,
+      className: className,
+    ));
+  }
 
   return GenerateResult(
       someReplace(
@@ -50,7 +68,9 @@ Future<GenerateResult> generateFlutterClass({
                       indent: indent,
                     ),
             )
-            .replaceFirst('%CONTENT%', dartIconsEntries.join('\n')),
+            .replaceFirst('%CONTENT%', dartIconsEntries.join('\n'))
+            .replaceFirst('%VALUES_MAP%', dartIconsValues.join('\n'))
+            .replaceFirst('%NAMES_MAP%', dartIconsNames.join('\n')),
         className: className,
         indent: indent,
       ),

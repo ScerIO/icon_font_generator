@@ -17,6 +17,14 @@ class %CLASS_NAME% {
 %INDENT%const %CLASS_NAME%._();
 
 %CONTENT%
+
+%INDENT%static const values = <String, IconData>{
+%VALUES_MAP%
+%INDENT%};
+
+%INDENT%static final names = <IconData, String>{
+%NAMES_MAP%
+%INDENT%};
 }
 ''';
 
@@ -25,3 +33,7 @@ const String icon = '%INDENT%static const IconData %ICON_NAME% = '
 
 const String package = '\n%INDENT%%INDENT%%INDENT%%INDENT%'
     '%INDENT%fontPackage: \'%PACKAGE_NAME%\',';
+
+const String value = '''%INDENT%%INDENT%'%ICON_NAME%': %ICON_NAME%,''';
+
+const String name = '''%INDENT%%INDENT%%ICON_NAME%: '%ICON_NAME%',''';
