@@ -66,27 +66,37 @@ project
 ```
 Generated icons.dart:
 ```dart
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 import 'package:flutter/widgets.dart';
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: constant_identifier_names
 @immutable
 class _UiIconsData extends IconData {
-  const UiIconsData(int codePoint)
+  const _UiIconsData(int codePoint, this.name)
       : super(
           codePoint,
           fontFamily: 'UiIcons',
         );
+
+  final String name;
 }
 
 @immutable
 class UiIcons {
   const UiIcons._();
 
-  static const IconData account = _UiIconsData(0xe000);
-  static const IconData arrowLeft = _UiIconsData(0xe001);
-  static const IconData arrowRight = _UiIconsData(0xe002);
-  static const IconData collection = _UiIconsData(0xe003);
+  static const account = _UiIconsData(0xf101, 'account');
+  static const arrow_left = _UiIconsData(0xf102, 'arrow_left');
+  static const arrow_right = _UiIconsData(0xf103, 'arrow_right');
+  static const collection = _UiIconsData(0xf104, 'collection');
+
+  static const all = <String, _UiIconsData>{
+    'account': account,
+    'arrow_left': arrow_left,
+    'arrow_right': arrow_right,
+    'collection': collection,
+  };
 }
 ```
 And also need add font to pubspec.yaml:
@@ -98,4 +108,21 @@ flutter:
     - family: UiIcons
       fonts:
         - asset: lib/src/icon_font/ui_icons.ttf
+```
+
+## Usage generated icons
+```dart
+// Usage in view
+Icon(
+  UiIcons.account, 
+  size: 40, 
+  color: Colors.orange,
+);
+
+// Return String "account"
+UiIcons.account.name;
+
+// Return _UiIconsData? instance
+// Attention! Can be null if generated icons font outdated 
+final icon = UiIcons.all['collection'];
 ```
