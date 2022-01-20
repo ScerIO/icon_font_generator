@@ -1,3 +1,15 @@
+## 3.2.0
+
+* Can be access to icon by name in String and access to icon name 
+```dart
+// Return String "account"
+UiIcons.account.name;
+
+// Return _UiIconsData? instance
+// Attention! Can be null if generated icons font outdated 
+final icon = UiIcons.all['collection'];
+```
+
 ## 3.1.0
 
 * Replace pedantic with lints
