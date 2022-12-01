@@ -38,6 +38,10 @@ class GenerateCommand extends Command {
         help: 'Flutter class name / family for generating file',
       )
       ..addOption(
+        'symlinks-map',
+        help: 'Symlinked icons map source',
+      )
+      ..addOption(
         'height',
         help: 'Fixed font height value',
         defaultsTo: '512',
@@ -97,6 +101,12 @@ class GenerateCommand extends Command {
       exit(1);
     }
 
+    if (argResults!['symlinks-map'] != null &&
+        !argResults!['symlinks-map'].toString().endsWith('.json')) {
+      print('--symlinks-map have to be a .json file');
+      exit(1);
+    }
+
     final genRootDir = Directory.fromUri(Platform.script.resolve('..'));
 
     final npmPackage = File(path.join(genRootDir.path, 'package.json'));
@@ -139,6 +149,10 @@ class GenerateCommand extends Command {
 
     final sourceIconsDirectory = Directory.fromUri(Directory.current.uri
         .resolve(argResults!['from'].replaceAll('\\', '/')));
+    final symlinksMap = argResults!['symlinks-map'] == null
+        ? null
+        : File.fromUri(Directory.current.uri
+            .resolve(argResults!['symlinks-map'].replaceAll('\\', '/')));
     final outIconsFile = File.fromUri(Directory.current.uri
         .resolve(argResults!['out-font'].replaceAll('\\', '/')));
     final outFlutterClassFile = File.fromUri(Directory.current.uri
@@ -201,6 +215,7 @@ class GenerateCommand extends Command {
 
     final generateClassResult = await generateFlutterClass(
       iconMap: iconsMap,
+      symlinksMap: symlinksMap,
       className: argResults!['class-name'],
       packageName: argResults!['package'],
       namingStrategy: argResults!['naming-strategy'],
