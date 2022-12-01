@@ -22,6 +22,7 @@ $ pub global activate icon_font_generator
 - `--out-font` * - Output icon font path (to file, for example: lib/font.ttf)
 - `--out-flutter` * - Output flutter icon class (to file, for example: lib/icons.dart)
 - `--class-name` * - The class name is also the font name used in pubspec.yaml (as font name)
+- `--symlinks-map` - Source map of symlinked icons, have to be a json map with this pattern: target -> source
 - `--height` - Fixed font height value, defaults: 512
 - `--descent` - Offset applied to the baseline, defaults: 240
 - `--package` - Name of package for generated icon data ([See more](https://api.flutter.dev/flutter/widgets/IconData/fontPackage.html))

@@ -39,7 +39,7 @@ class GenerateCommand extends Command {
       )
       ..addOption(
         'symlinks-map',
-        help: 'Symlinked icons map source',
+        help: 'Symlinks json map, with this pattern: target -> source',
       )
       ..addOption(
         'height',
