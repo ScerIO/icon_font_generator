@@ -19,22 +19,35 @@ Future<GenerateResult> generateFlutterClass({
   required String namingStrategy,
   String indent = '  ',
 }) async {
+  String reCase(String data) {
+    return namingStrategy == 'snake'
+        ? ReCase(data).snakeCase
+        : ReCase(data).camelCase;
+  }
+
   final Map<String, dynamic> icons = jsonDecode(await iconMap.readAsString());
   final Map<String, dynamic> symlinks =
       symlinksMap == null ? {} : jsonDecode(await symlinksMap.readAsString());
 
+  final Iterable<String> reCasedIconKeys = icons.keys.map((key) => reCase(key));
+
   for (var symlinkEntry in symlinks.entries) {
+    // Symlinks values are already correctly cased
     final symlink = symlinkEntry.key;
     final target = symlinkEntry.value.toString();
-    final targetEntry =
-        icons.entries.singleWhere((entry) => entry.key == target);
 
-    if (icons.keys.contains(symlink)) {
+    if (reCasedIconKeys.contains(symlink)) {
       print(
-          '\x1B[33mWarning: "$symlink" icon already exists - symlink creation skipped\x1B[0m');
+          '\x1B[33mWarning: symlink "$symlink" icon already exists - symlink creation skipped\x1B[0m');
+      continue;
+    } else if (!reCasedIconKeys.contains(target)) {
+      print(
+          '\x1B[33mWarning: target "$target" icon does not exist - symlink creation skipped\x1B[0m');
       continue;
     }
 
+    final targetEntry =
+        icons.entries.singleWhere((entry) => reCase(entry.key) == target);
     icons.addAll({
       symlink: targetEntry.value,
     });
@@ -44,9 +57,7 @@ Future<GenerateResult> generateFlutterClass({
   final dartIconsValues = <String>{};
 
   for (final entry in icons.entries) {
-    final name = namingStrategy == 'snake'
-        ? ReCase(entry.key).snakeCase
-        : ReCase(entry.key).camelCase;
+    final name = reCase(entry.key);
 
     dartIconsEntries.add(someReplace(
       template.icon
