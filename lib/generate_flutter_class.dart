@@ -29,16 +29,20 @@ Future<GenerateResult> generateFlutterClass({
   final Map<String, dynamic> symlinks =
       symlinksMap == null ? {} : jsonDecode(await symlinksMap.readAsString());
 
-  final Iterable<String> reCasedIconKeys = icons.keys.map((key) => reCase(key));
-
   for (var symlinkEntry in symlinks.entries) {
     // Symlinks values are already correctly cased
     final symlink = symlinkEntry.key;
     final target = symlinkEntry.value.toString();
+    final Iterable<String> reCasedIconKeys =
+        icons.keys.map((key) => reCase(key));
 
     if (reCasedIconKeys.contains(symlink)) {
       print(
           '\x1B[33mWarning: symlink "$symlink" icon already exists - symlink creation skipped\x1B[0m');
+      continue;
+    } else if (symlinks.keys.contains(target)) {
+      print(
+          '\x1B[33mWarning: target "$target" icon is already a symlink - symlink creation skipped\x1B[0m');
       continue;
     } else if (!reCasedIconKeys.contains(target)) {
       print(
