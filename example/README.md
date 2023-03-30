@@ -1,70 +1,41 @@
-# Example
+## Usage in flutter app
 
-File structure:
-```
-project
-└───icons
-│   │   account.svg
-│   │   arrow_left.svg
-│   │   arrow_right.svg
-│   │   collection.svg
-│   
-└───lib
-│   │   icon_font
-│   │   widgets
-```
-Run command:
-```
-$ icon_font_generator --from=icons --class-name=UiIcons --out-font=lib/icon_font/ui_icons.ttf --out-flutter=lib/widgets/icons.dart
-```
-Generates:
-```
-project
-└───icons
-│   │   account.svg
-│   │   arrow_left.svg
-│   │   arrow_right.svg
-│   │   collection.svg
-│   
-└───lib
-│   └───widgets
-│   |   │   icons.dart
-│   │
-│   └───icon_font
-│       │   ui_icons.ttf
-```
-Generated icons.dart:
+Located here: [example/flutter_usage/](example/flutter_usage/)
+
+## Generate from cli
+
 ```dart
-// GENERATED CODE - DO NOT MODIFY BY HAND
+import 'dart:io';
 
-import 'package:flutter/widgets.dart';
+import 'package:icon_font_generator/icon_font_generator.dart';
 
-@immutable
-class _UiIconsData extends IconData {
-  const UiIconsData(int codePoint)
-      : super(
-          codePoint,
-          fontFamily: 'UiIcons',
-        );
+void main() {
+  const fontFileName = 'my_icons.otf';
+  const classFileName = 'my_icons.dart';
+
+  // Input data
+  final svgMap = {
+    'account_icon': '''<svg viewBox="0 0 0 0"></svg>'''
+  };
+
+  // Generating font
+  final svgToOtfResult = svgToOtf(
+    svgMap: svgMap,
+    fontName: 'My Icons',
+  );
+
+  // Writing font to a file
+  writeToFile(fontFileName, svgToOtfResult.font);
+
+  // Generating Flutter class
+  final generatedClass = generateFlutterClass(
+    glyphList: svgToOtfResult.glyphList,
+    familyName: svgToOtfResult.font.familyName,
+    className: 'MyIcons',
+    fontFileName: fontFileName,
+  );
+
+  // Writing class content to a file
+  File(classFileName).writeAsStringSync(generatedClass);
 }
-
-@immutable
-class UiIcons {
-  UiIcons._();
-
-  static const IconData account = _UiIconsData(0xe000);
-  static const IconData arrowLeft = _UiIconsData(0xe001);
-  static const IconData arrowRight = _UiIconsData(0xe002);
-  static const IconData collection = _UiIconsData(0xe003);
-}
-```
-And also need add font to pubspec.yaml:
-```yaml
-...
-
-flutter:
-  fonts:
-    - family: UiIcons
-      fonts:
-        - asset: lib/src/icon_font/ui_icons.ttf
 ```

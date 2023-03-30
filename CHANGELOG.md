@@ -1,3 +1,7 @@
+## 4.0.0
+
+* Rewrite by fork [[fontify]](https://github.com/westracer/fontify)
+
 ## 3.2.0
 
 * Can be access to icon by name in String and access to icon name 

@@ -1,0 +1,40 @@
+name: icon_font_generator_example
+description: Flutter font generator example
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+  flutter: '>=3.7.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+  icon_font_generator:
+    path: ../../
+
+flutter:
+  fonts:
+    - family: Ui Icons
+      fonts:
+        - asset: fonts/icons.otf
+
+icon_font:
+  input_svg_dir: icons
+  output_font_file: fonts/icons.otf
+  
+  output_class_file: lib/ui/icons.dart
+  class_name: UiIcons
+  format: true
+
+  font_name: Ui Icons
+  normalize: false
+  ignore_shapes: false
+
+  recursive: false
+  verbose: false

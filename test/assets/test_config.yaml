@@ -1,0 +1,22 @@
+name: test
+version: 1.0
+
+icon_font:
+  input_svg_dir: ./
+  output_font_file: generated_font.otf
+  
+  output_class_file: lib/test_font.dart
+  class_name: MyIcons
+  package: test_package
+  format: true
+
+  font_name: My Icons
+  normalize: false
+  ignore_shapes: false
+
+  recursive: false
+  verbose: false
+
+  # Unknown config parameters
+  testing: true
+  1: 1

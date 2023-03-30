@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "program": "./example/flutter_usage/lib/main.dart",
+            "args": [
+                "--enable-impeller",
+                "--web-port",
+                "8080"
+            ]
+        }
+    ]
+}
