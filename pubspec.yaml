@@ -4,9 +4,8 @@ description: >-
   Converts SVG icons to OTF font and generates Flutter-compatible class.
   Provides an API and a CLI tool.
 homepage: https://github.com/ScerIO/icon_font_generator
-
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   args: ^2.4.0
@@ -24,6 +23,6 @@ dependencies:
 dev_dependencies:
   lints: ^2.0.1
   test: ^1.23.1
-  
+
 executables:
   generator: generator
