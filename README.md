@@ -17,10 +17,10 @@ Compatible with dart2js and dart2native.
 ### Install via dev dependency
 
 ```shell
-$ flutter pub add --dev icon_font_generator
+dart add --dev icon_font_generator
 
 # And it's ready to go:
-$ flutter pub run icon_font_generator:generate <input-svg-dir> <output-font-file> [options]
+dart run icon_font_generator:generator <input-svg-dir> <output-font-file> [options]
 ```
 
 ### or [Globally activate][] the package:
@@ -28,10 +28,10 @@ $ flutter pub run icon_font_generator:generate <input-svg-dir> <output-font-file
 [globally activate]: https://dart.dev/tools/pub/cmd/pub-global
 
 ```shell
-$ pub global activate icon_font_generator
+pub global activate icon_font_generator
 
 # And it's ready to go:
-$ icon_font_generator <input-svg-dir> <output-font-file> [options]
+icon_font_generator <input-svg-dir> <output-font-file> [options]
 ```
 
 Required positional arguments:
@@ -75,7 +75,7 @@ Shows usage information.
 *Usage example:*
 
 ```shell
-$ icon_font_generator assets/svg/ fonts/my_icons_font.otf --output-class-file=lib/my_icons.dart -r
+icon_font_generator assets/svg/ fonts/my_icons_font.otf --output-class-file=lib/my_icons.dart -r
 ```
 
 Updated Flutter project's pubspec.yaml:
@@ -111,8 +111,12 @@ icon_font:
   verbose: false
 ```
 
-`input_svg_dir` and `output_font_file` keys are required.
-It's possible to specify any other config file by using `--config-file` option.
+`input_svg_dir` and `output_font_file` keys are required in the config file.
+It's possible to specify any other config file by using `--config-file` option as:
+
+```shell
+dart run icon_font_generator:generator --config-file=icon_font.yaml
+```
 
 ## Using API
 
