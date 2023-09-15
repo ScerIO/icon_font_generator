@@ -6,7 +6,7 @@ description: >-
 homepage: https://github.com/ScerIO/icon_font_generator
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: '>=2.19.2 <4.0.0'
 
 dependencies:
   args: ^2.4.0
