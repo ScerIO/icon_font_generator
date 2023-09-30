@@ -17,10 +17,10 @@ Compatible with dart2js and dart2native.
 ### Install via dev dependency
 
 ```shell
-$ flutter pub add --dev icon_font_generator
+$ dart pub add --dev icon_font_generator
 
 # And it's ready to go:
-$ flutter pub run icon_font_generator:generator <input-svg-dir> <output-font-file> [options]
+$ dart run icon_font_generator:generator <input-svg-dir> <output-font-file> [options]
 ```
 
 ### or [Globally activate][] the package:
@@ -49,6 +49,8 @@ Name for a generated class.
 Name of a package that provides a font. Used to provide a font through package dependency.
 - `--[no-]format`
 Format dart generated code.
+- `-s` or `--naming-strategy=<strategy>`
+Naming strategy of generated code (camel or snake).
 
 Font options:
 - `-f` or `--font-name=<name>`
@@ -102,6 +104,7 @@ icon_font:
   class_name: "MyIcons"
   package: my_font_package
   format: true
+  naming_strategy: "camel"
 
   font_name: "My Icons"
   normalize: true

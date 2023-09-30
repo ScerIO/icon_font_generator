@@ -30,6 +30,7 @@ const _kArgAllowedTypes = <CliArgument, List<Type>>{
 
 const kDefaultVerbose = false;
 const kDefaultFormat = false;
+const kDefaultNamingStrategy = 'camel';
 const kDefaultRecursive = false;
 
 const kOptionNames = EnumClass<CliArgument, String>({
@@ -39,6 +40,7 @@ const kOptionNames = EnumClass<CliArgument, String>({
   CliArgument.className: 'class-name',
   CliArgument.fontPackage: 'package',
   CliArgument.format: 'format',
+  CliArgument.namingStrategy: 'naming-strategy',
 
   CliArgument.fontName: 'font-name',
   CliArgument.normalize: 'normalize',
@@ -59,6 +61,7 @@ const kConfigKeys = EnumClass<CliArgument, String>({
   CliArgument.className: 'class_name',
   CliArgument.fontPackage: 'package',
   CliArgument.format: 'format',
+  CliArgument.namingStrategy: 'naming_strategy',
 
   CliArgument.fontName: 'font_name',
   CliArgument.normalize: 'normalize',
@@ -85,6 +88,7 @@ enum CliArgument {
   className,
   fontPackage,
   format,
+  namingStrategy,
 
   // Font-related
   fontName,
@@ -115,6 +119,7 @@ class CliArguments {
     this.normalize,
     this.verbose,
     this.configFile,
+    this.namingStrategy,
   );
 
   /// Creates [CliArguments] for a map of raw values.
@@ -137,6 +142,7 @@ class CliArguments {
       map[CliArgument.normalize] as bool?,
       map[CliArgument.verbose] as bool?,
       map[CliArgument.configFile] as File?,
+      map[CliArgument.namingStrategy] as String?,
     );
   }
 
@@ -152,6 +158,7 @@ class CliArguments {
   final bool? normalize;
   final bool? verbose;
   final File? configFile;
+  final String? namingStrategy;
 }
 
 /// Parses argument list.

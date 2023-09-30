@@ -9,6 +9,7 @@ icon_font:
   class_name: MyIcons
   package: test_package
   format: true
+  naming_strategy: snake
 
   font_name: My Icons
   normalize: false

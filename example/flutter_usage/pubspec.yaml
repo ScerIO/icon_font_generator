@@ -31,6 +31,7 @@ icon_font:
   output_class_file: lib/ui/icons.dart
   class_name: UiIcons
   format: true
+  naming_strategy: snake
 
   font_name: Ui Icons
   normalize: false

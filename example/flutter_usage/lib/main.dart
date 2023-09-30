@@ -29,9 +29,9 @@ class MyHomePage extends StatelessWidget {
           child: Column(
             children: [
               UiIcons.account,
-              UiIcons.arrowLeft,
+              UiIcons.arrow_left,
               UiIcons.collection,
-              UiIcons.arrowRight,
+              UiIcons.arrow_right,
             ]
                 .map((iconData) => Padding(
                       padding: const EdgeInsets.all(16),
