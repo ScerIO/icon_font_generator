@@ -36,13 +36,13 @@ class UiIcons {
   /// Font icon named "__arrow_left__"
   ///
   /// <image width='32px' src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiI+PHBhdGggZD0iTTIyLjUzOCA3LjUzOEwyMCA1IDkgMTZsMTEgMTEgMi41MzgtMi41MzhMMTQuMDc3IDE2eiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+'>
-  static const IconData arrow_left =
+  static const IconData arrowLeft =
       IconData(0xe001, fontFamily: iconFontFamily);
 
-  /// Font icon named "__arrow_right__"
+  /// Font icon named "__arrow-right__"
   ///
   /// <image width='32px' src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiI+PHBhdGggZD0iTTkgNy41MzhMMTEuNTM4IDVsMTEgMTEtMTEgMTFMOSAyNC40NjIgMTcuNDYyIDE2eiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+'>
-  static const IconData arrow_right =
+  static const IconData arrowRight =
       IconData(0xe002, fontFamily: iconFontFamily);
 
   /// Font icon named "__collection__"

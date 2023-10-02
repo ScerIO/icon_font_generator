@@ -15,7 +15,7 @@ const _kDefaultFontFileName = 'icon_font_generator_icons.otf';
 ///
 /// Returns a new string.
 String _getVarName(String string) {
-  final replaced = string.replaceAll(RegExp(r'[^a-zA-Z0-9_$]'), '');
+  final replaced = string.replaceAll(RegExp(r'[^a-zA-Z0-9_\-$]'), '');
   return RegExp(r'^[a-zA-Z$].*').firstMatch(replaced)?.group(0) ?? '';
 }
 
