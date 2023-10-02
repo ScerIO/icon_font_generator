@@ -1,6 +1,7 @@
 import 'package:path/path.dart' as p;
 import 'package:recase/recase.dart';
 
+import '../cli/arguments.dart';
 import '../common/constant.dart';
 import '../common/generic_glyph.dart';
 import '../otf/defaults.dart';
@@ -33,12 +34,15 @@ class FlutterClassGenerator {
     String? fontFileName,
     String? package,
     int? indent,
-    String namingStrategy = 'camel',
+    String? namingStrategy,
   })  : _indent = ' ' * (indent ?? _kDefaultIndent),
         _className = _getVarName(className ?? _kDefaultClassName),
         _familyName = familyName ?? kDefaultFontFamily,
         _fontFileName = fontFileName ?? _kDefaultFontFileName,
-        _iconVarNames = _generateVariableNames(glyphList, namingStrategy),
+        _iconVarNames = _generateVariableNames(
+          glyphList,
+          namingStrategy ?? kDefaultNamingStrategy,
+        ),
         _package = package?.isEmpty ?? true ? null : package;
 
   final List<GenericGlyph> glyphList;

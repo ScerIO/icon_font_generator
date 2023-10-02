@@ -83,7 +83,7 @@ String generateFlutterClass({
   String? fontFileName,
   String? package,
   int? indent,
-  String namingStrategy = 'camel',
+  String? namingStrategy,
 }) {
   final generator = FlutterClassGenerator(
     glyphList,
