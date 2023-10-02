@@ -103,6 +103,7 @@ void _run(CliArguments parsedArgs) {
       fontFileName: fontFileName,
       familyName: otfResult.font.familyName,
       package: parsedArgs.fontPackage,
+      namingStrategy: parsedArgs.namingStrategy ?? 'camel',
     );
 
     if (parsedArgs.format ?? kDefaultFormat) {

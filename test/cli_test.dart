@@ -36,6 +36,7 @@ void main() {
         '--output-class-file=test/a/df.dart',
         '--class-name=MyIcons',
         '--font-name=My Icons',
+        '--naming-strategy=snake',
         '--no-normalize',
         '--no-ignore-shapes',
         '--recursive',
@@ -51,6 +52,7 @@ void main() {
       expect(parsedArgs.classFile?.path, 'test/a/df.dart');
       expect(parsedArgs.className, 'MyIcons');
       expect(parsedArgs.fontName, 'My Icons');
+      expect(parsedArgs.namingStrategy, 'snake');
       expect(parsedArgs.normalize, isFalse);
       expect(parsedArgs.ignoreShapes, isFalse);
       expect(parsedArgs.recursive, isTrue);
@@ -74,6 +76,7 @@ void main() {
       expect(parsedArgs.classFile, isNull);
       expect(parsedArgs.className, isNull);
       expect(parsedArgs.fontName, isNull);
+      expect(parsedArgs.namingStrategy, kDefaultNamingStrategy);
       expect(parsedArgs.normalize, isTrue);
       expect(parsedArgs.ignoreShapes, isTrue);
       expect(parsedArgs.recursive, isFalse);
@@ -95,6 +98,7 @@ void main() {
         '--output-class-file=test/a/df.dart',
         '--class-name=MyIcons',
         '--font-name=My Icons',
+        '--naming-strategy=camel',
         '--no-normalize',
         '--no-ignore-shapes',
         '--recursive',
@@ -115,6 +119,7 @@ void main() {
         '--output-class-file=no',
         '--class-name=no',
         '--font-name=no',
+        '--naming-strategy=camel',
         '--normalize',
         '--ignore-shapes',
         '--recursive',
@@ -130,6 +135,7 @@ void main() {
       expect(parsedArgs.classFile?.path, 'lib/test_font.dart');
       expect(parsedArgs.className, 'MyIcons');
       expect(parsedArgs.fontName, 'My Icons');
+      expect(parsedArgs.namingStrategy, 'snake');
       expect(parsedArgs.format, isTrue);
       expect(parsedArgs.normalize, isFalse);
       expect(parsedArgs.ignoreShapes, isFalse);
@@ -151,6 +157,7 @@ void main() {
       expect(parsedArgs.classFile?.path, 'lib/test_font.dart');
       expect(parsedArgs.className, 'MyIcons');
       expect(parsedArgs.fontName, 'My Icons');
+      expect(parsedArgs.namingStrategy, 'snake');
       expect(parsedArgs.format, isTrue);
       expect(parsedArgs.normalize, isFalse);
       expect(parsedArgs.ignoreShapes, isFalse);
@@ -205,6 +212,7 @@ icon_font:
   output_class_file: lib/test_font.dart
   class_name: MyIcons
   package: test_package
+  naming_strategy: snake
 
   font_name: My Icons
   normalize: false
@@ -220,6 +228,7 @@ icon_font:
       expect(parsedArgs.classFile?.path, 'lib/test_font.dart');
       expect(parsedArgs.className, 'MyIcons');
       expect(parsedArgs.fontName, 'My Icons');
+      expect(parsedArgs.namingStrategy, 'snake');
       expect(parsedArgs.normalize, isFalse);
       expect(parsedArgs.ignoreShapes, isFalse);
       expect(parsedArgs.recursive, isTrue);
@@ -240,6 +249,7 @@ icon_font:
       expect(parsedArgs.classFile, isNull);
       expect(parsedArgs.className, isNull);
       expect(parsedArgs.fontName, isNull);
+      expect(parsedArgs.namingStrategy, isNull);
       expect(parsedArgs.normalize, isNull);
       expect(parsedArgs.ignoreShapes, isNull);
       expect(parsedArgs.recursive, isNull);

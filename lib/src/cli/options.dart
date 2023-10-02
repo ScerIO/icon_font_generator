@@ -30,6 +30,14 @@ void defineOptions(ArgParser argParser) {
       help: 'Formate dart generated code.',
       defaultsTo: kDefaultFormat,
     )
+    ..addOption(
+      kOptionNames[CliArgument.namingStrategy]!,
+      abbr: 's',
+      help: 'Naming strategy of generated code.',
+      defaultsTo: kDefaultNamingStrategy,
+      valueHelp: 'strategy',
+      allowed: {'camel', 'snake'},
+    )
     ..addSeparator('Font options:')
     ..addOption(
       kOptionNames[CliArgument.fontName]!,
