@@ -30,6 +30,11 @@ void defineOptions(ArgParser argParser) {
       help: 'Formate dart generated code.',
       defaultsTo: kDefaultFormat,
     )
+    ..addFlag(
+      kOptionNames[CliArgument.includeMeta]!,
+      help: 'Includes base64 comments of a font.',
+      defaultsTo: kDefaultIncludeMeta,
+    )
     ..addSeparator('Font options:')
     ..addOption(
       kOptionNames[CliArgument.fontName]!,
