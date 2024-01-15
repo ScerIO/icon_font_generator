@@ -94,7 +94,10 @@ class GenericGlyph {
     return GenericGlyph(outlines, bounds);
   }
 
-  factory GenericGlyph.fromSvg(Svg svg) {
+  factory GenericGlyph.fromSvg(
+    Svg svg, {
+    bool? includeMeta,
+  }) {
     final pathList = svg.elementList.whereType<PathElement>();
 
     final outlines = [
@@ -106,7 +109,7 @@ class GenericGlyph {
       ratioX: svg.ratioX,
       ratioY: svg.ratioY,
       offset: svg.offset,
-      preview: svg.toBase64(),
+      preview: includeMeta == true ? svg.toBase64() : null,
     );
 
     return GenericGlyph(outlines, svg.viewBox, metadata);

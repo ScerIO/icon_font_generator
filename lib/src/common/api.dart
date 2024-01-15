@@ -32,8 +32,10 @@ SvgToOtfResult svgToOtf({
   bool? ignoreShapes,
   bool? normalize,
   String? fontName,
+  bool? includeMeta,
 }) {
   normalize ??= true;
+  includeMeta ??= true;
 
   final svgList = [
     for (final e in svgMap.entries)
@@ -53,7 +55,9 @@ SvgToOtfResult svgToOtf({
     }
   }
 
-  final glyphList = svgList.map(GenericGlyph.fromSvg).toList();
+  final glyphList = svgList
+      .map((svg) => GenericGlyph.fromSvg(svg, includeMeta: includeMeta))
+      .toList();
 
   final font = OpenTypeFont.createFromGlyphs(
     glyphList: glyphList,
