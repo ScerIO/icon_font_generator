@@ -32,7 +32,7 @@ void defineOptions(ArgParser argParser) {
     )
     ..addFlag(
       kOptionNames[CliArgument.includeMeta]!,
-      help: 'Includes base64 comments of a font.',
+      help: 'Includes base64-encoded images of the font in comments.',
       defaultsTo: kDefaultIncludeMeta,
     )
     ..addSeparator('Font options:')
