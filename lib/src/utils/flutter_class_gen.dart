@@ -166,8 +166,8 @@ import 'package:flutter/widgets.dart';
 ///
 /// To use this class, make sure you declare the font in your
 /// project's `pubspec.yaml` file in the `fonts` section. This ensures that
-/// the "$_familyName" font is included in your application. This font is used to
-/// display the icons. For example:
+/// the "$_familyName" font is included in your application.
+/// This font is used to display the icons. For example:
 /// 
 /// ```yaml
 /// flutter:
