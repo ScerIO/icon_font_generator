@@ -87,6 +87,7 @@ void _run(CliArguments parsedArgs) {
     ignoreShapes: parsedArgs.ignoreShapes,
     normalize: parsedArgs.normalize,
     fontName: parsedArgs.fontName,
+    sort: parsedArgs.sort,
   );
 
   writeToFile(parsedArgs.fontFile.path, otfResult.font);
@@ -103,6 +104,7 @@ void _run(CliArguments parsedArgs) {
       fontFileName: fontFileName,
       familyName: otfResult.font.familyName,
       package: parsedArgs.fontPackage,
+      iconList: parsedArgs.iconList,
     );
 
     if (parsedArgs.format ?? kDefaultFormat) {

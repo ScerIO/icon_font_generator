@@ -33,12 +33,14 @@ class FlutterClassGenerator {
     String? fontFileName,
     String? package,
     int? indent,
+    bool? iconList = false,
   })  : _indent = ' ' * (indent ?? _kDefaultIndent),
         _className = _getVarName(className ?? _kDefaultClassName),
         _familyName = familyName ?? kDefaultFontFamily,
         _fontFileName = fontFileName ?? _kDefaultFontFileName,
         _iconVarNames = _generateVariableNames(glyphList),
-        _package = package?.isEmpty ?? true ? null : package;
+        _package = package?.isEmpty ?? true ? null : package,
+        _iconList = iconList ?? false;
 
   final List<GenericGlyph> glyphList;
   final String _fontFileName;
@@ -47,6 +49,7 @@ class FlutterClassGenerator {
   final String _indent;
   final String? _package;
   final List<String> _iconVarNames;
+  final bool _iconList;
 
   static List<String> _generateVariableNames(List<GenericGlyph> glyphList) {
     final iconNameSet = <String>{};
@@ -121,6 +124,19 @@ class FlutterClassGenerator {
     ];
   }
 
+  String _generateIconList() {
+
+    return [
+      '',
+      '/// List of all icons in this font.',
+      'static const List<IconData> values = <IconData>[',
+      for (var i = 0; i < _iconVarNames.length; i++) ...[
+        '${_iconVarNames[i]},',
+      ],
+      '];'
+    ].join('\n');
+  }
+
   /// Generates content for a class' file.
   String generate() {
     final classContent = [
@@ -129,6 +145,7 @@ class FlutterClassGenerator {
       _fontFamilyConst,
       if (_hasPackage) _fontPackageConst,
       for (var i = 0; i < glyphList.length; i++) ..._generateIconConst(i),
+      if (_iconList) _generateIconList(),
     ];
 
     final classContentString =
@@ -149,8 +166,8 @@ import 'package:flutter/widgets.dart';
 ///
 /// To use this class, make sure you declare the font in your
 /// project's `pubspec.yaml` file in the `fonts` section. This ensures that
-/// the "$_familyName" font is included in your application. This font is used to
-/// display the icons. For example:
+/// the "$_familyName" font is included in your application.
+/// This font is used to display the icons. For example:
 /// 
 /// ```yaml
 /// flutter:

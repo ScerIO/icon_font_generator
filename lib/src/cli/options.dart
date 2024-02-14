@@ -30,6 +30,18 @@ void defineOptions(ArgParser argParser) {
       help: 'Formate dart generated code.',
       defaultsTo: kDefaultFormat,
     )
+    ..addFlag(
+      kOptionNames[CliArgument.sort]!,
+      abbr: 's',
+      help: 'Sort by generated icon names.',
+      defaultsTo: kDefaultSort,
+    )
+    ..addFlag(
+      kOptionNames[CliArgument.iconList]!,
+      abbr: 'l',
+      help: 'Generate a list of icons.',
+      defaultsTo: kDefaultIconList,
+    )
     ..addSeparator('Font options:')
     ..addOption(
       kOptionNames[CliArgument.fontName]!,

@@ -24,6 +24,9 @@ class SvgToOtfResult {
 /// * If [normalize] is set to true,
 /// glyphs are resized and centered to fit in coordinates grid (unitsPerEm).
 /// Defaults to true.
+/// * If [sort] is set to true,
+/// glyphs are sorted by name.
+/// Defaults to false.
 /// * [fontName] is a name for a generated font.
 ///
 /// Returns an instance of [SvgToOtfResult] class containing glyphs and a font.
@@ -32,8 +35,10 @@ SvgToOtfResult svgToOtf({
   bool? ignoreShapes,
   bool? normalize,
   String? fontName,
+  bool? sort,
 }) {
   normalize ??= true;
+  sort ??= false;
 
   final svgList = [
     for (final e in svgMap.entries)
@@ -51,6 +56,9 @@ SvgToOtfResult svgToOtf({
         break;
       }
     }
+  }
+  if (sort) {
+    svgList.sort((a, b) => a.name.compareTo(b.name));
   }
 
   final glyphList = svgList.map(GenericGlyph.fromSvg).toList();
@@ -83,6 +91,7 @@ String generateFlutterClass({
   String? fontFileName,
   String? package,
   int? indent,
+  bool? iconList,
 }) {
   final generator = FlutterClassGenerator(
     glyphList,
@@ -91,6 +100,7 @@ String generateFlutterClass({
     fontFileName: fontFileName,
     familyName: familyName,
     package: package,
+    iconList: iconList,
   );
 
   return generator.generate();

@@ -23,6 +23,8 @@ const _kArgAllowedTypes = <CliArgument, List<Type>>{
   CliArgument.ignoreShapes: [bool],
   CliArgument.recursive: [bool],
   CliArgument.format: [bool],
+  CliArgument.sort: [bool],
+  CliArgument.iconList: [bool],
   CliArgument.verbose: [bool],
   CliArgument.help: [bool],
   CliArgument.configFile: [String],
@@ -30,6 +32,8 @@ const _kArgAllowedTypes = <CliArgument, List<Type>>{
 
 const kDefaultVerbose = false;
 const kDefaultFormat = false;
+const kDefaultSort = false;
+const kDefaultIconList = false;
 const kDefaultRecursive = false;
 
 const kOptionNames = EnumClass<CliArgument, String>({
@@ -39,6 +43,8 @@ const kOptionNames = EnumClass<CliArgument, String>({
   CliArgument.className: 'class-name',
   CliArgument.fontPackage: 'package',
   CliArgument.format: 'format',
+  CliArgument.sort: 'sort',
+  CliArgument.iconList: 'list',
 
   CliArgument.fontName: 'font-name',
   CliArgument.normalize: 'normalize',
@@ -59,6 +65,8 @@ const kConfigKeys = EnumClass<CliArgument, String>({
   CliArgument.className: 'class_name',
   CliArgument.fontPackage: 'package',
   CliArgument.format: 'format',
+  CliArgument.sort: 'sort',
+  CliArgument.iconList: 'list',
 
   CliArgument.fontName: 'font_name',
   CliArgument.normalize: 'normalize',
@@ -85,6 +93,8 @@ enum CliArgument {
   className,
   fontPackage,
   format,
+  sort,
+  iconList,
 
   // Font-related
   fontName,
@@ -109,6 +119,8 @@ class CliArguments {
     this.className,
     this.fontPackage,
     this.format,
+    this.sort,
+    this.iconList,
     this.fontName,
     this.recursive,
     this.ignoreShapes,
@@ -131,6 +143,8 @@ class CliArguments {
       map[CliArgument.className] as String?,
       map[CliArgument.fontPackage] as String?,
       map[CliArgument.format] as bool?,
+      map[CliArgument.sort] as bool?,
+      map[CliArgument.iconList] as bool?,
       map[CliArgument.fontName] as String?,
       map[CliArgument.recursive] as bool?,
       map[CliArgument.ignoreShapes] as bool?,
@@ -146,6 +160,8 @@ class CliArguments {
   final String? className;
   final String? fontPackage;
   final bool? format;
+  final bool? sort;
+  final bool? iconList;
   final String? fontName;
   final bool? recursive;
   final bool? ignoreShapes;

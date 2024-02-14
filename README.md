@@ -49,6 +49,11 @@ Name for a generated class.
 Name of a package that provides a font. Used to provide a font through package dependency.
 - `--[no-]format`
 Format dart generated code.
+- `-s` or `--sort`
+Sort by icon names for the generated code.
+
+- `-l` or `--list`
+Generate a list of icons.
 
 Font options:
 - `-f` or `--font-name=<name>`
@@ -102,6 +107,8 @@ icon_font:
   class_name: "MyIcons"
   package: my_font_package
   format: true
+  sort: true
+  list: true
 
   font_name: "My Icons"
   normalize: true
