@@ -9,6 +9,8 @@ icon_font:
   class_name: MyIcons
   package: test_package
   format: true
+  sort: true
+  list: true
 
   font_name: My Icons
   normalize: false
