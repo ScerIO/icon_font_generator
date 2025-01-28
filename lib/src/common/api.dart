@@ -32,6 +32,7 @@ SvgToOtfResult svgToOtf({
   bool? ignoreShapes,
   bool? normalize,
   String? fontName,
+  int? fontWeight,
 }) {
   normalize ??= true;
 
@@ -59,6 +60,7 @@ SvgToOtfResult svgToOtf({
     glyphList: glyphList,
     fontName: fontName,
     normalize: normalize,
+    fontWeight: fontWeight,
     useOpenType: true,
     usePostV2: true,
   );

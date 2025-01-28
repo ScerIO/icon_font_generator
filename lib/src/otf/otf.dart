@@ -68,6 +68,7 @@ class OpenTypeFont implements BinaryCodable {
     bool? useOpenType,
     bool? usePostV2,
     bool? normalize,
+    int? fontWeight,
   }) {
     if (fontName?.isEmpty ?? false) {
       fontName = null;
@@ -136,7 +137,8 @@ class OpenTypeFont implements BinaryCodable {
     final maxp = MaximumProfileTable.create(fullGlyphList.length, glyf);
     final cmap = CharacterToGlyphTable.create(fullGlyphList);
     final gsub = GlyphSubstitutionTable.create();
-    final os2 = OS2Table.create(hmtx, head, hhea, cmap, gsub, achVendID);
+    final os2 = OS2Table.create(hmtx, head, hhea, cmap, gsub, achVendID,
+        fontWeight: fontWeight);
 
     final cff =
         useOpenType ? CFF1Table.create(fullGlyphList, head, hmtx, name) : null;

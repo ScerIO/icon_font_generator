@@ -149,6 +149,7 @@ class OS2Table extends FontTable {
     GlyphSubstitutionTable gsub,
     String achVendID, {
     int version = _kVersion5,
+    int? fontWeight,
   }) {
     final asciiAchVendID = achVendID.getAsciiPrintable();
 
@@ -180,7 +181,7 @@ class OS2Table extends FontTable {
         null,
         version,
         _getAverageWidth(hmtx),
-        400, // Regular weight
+        fontWeight ?? 400, // Regular weight
         5, // Normal width
         0, // Installable embedding
         scriptXsize,
