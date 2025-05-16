@@ -1,3 +1,7 @@
+## 4.0.1
+
+* Bumped `dart_style` version to `^3.0.1`
+
 ## 4.0.0
 
 * Rewrite by fork [[fontify]](https://github.com/westracer/fontify)
