@@ -15,8 +15,7 @@ OpenTypeFont readFromFile(String path) =>
 
 /// Writes OpenType font to a file.
 void writeToFile(String path, OpenTypeFont font) {
-  final file = File(path);
-  file.createSync(recursive: true);
+  final file = File(path)..createSync(recursive: true);
   final byteData = OTFWriter().write(font);
   final extension = p.extension(file.path).toLowerCase();
 
