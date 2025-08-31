@@ -217,8 +217,8 @@ class PostScriptVersion20 extends PostScriptData {
 }
 
 class PostScriptTable extends FontTable {
-  PostScriptTable(TableRecordEntry? entry, this.header, this.data)
-      : super.fromTableRecordEntry(entry);
+  PostScriptTable(super.entry, this.header, this.data)
+      : super.fromTableRecordEntry();
 
   factory PostScriptTable.fromByteData(
       ByteData byteData, TableRecordEntry entry) {

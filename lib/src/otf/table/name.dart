@@ -223,8 +223,8 @@ class NamingTableFormat0Header implements BinaryCodable {
 }
 
 abstract class NamingTable extends FontTable {
-  NamingTable.fromTableRecordEntry(TableRecordEntry? entry)
-      : super.fromTableRecordEntry(entry);
+  NamingTable.fromTableRecordEntry(super.entry)
+      : super.fromTableRecordEntry();
 
   static NamingTable? fromByteData(ByteData byteData, TableRecordEntry entry) {
     final format = byteData.getUint16(entry.offset);
@@ -257,10 +257,10 @@ abstract class NamingTable extends FontTable {
 
 class NamingTableFormat0 extends NamingTable {
   NamingTableFormat0(
-    TableRecordEntry? entry,
+    super.entry,
     this.header,
     this.stringList,
-  ) : super.fromTableRecordEntry(entry);
+  ) : super.fromTableRecordEntry();
 
   factory NamingTableFormat0.create(
       String fontName, String? description, Revision revision) {

@@ -44,7 +44,7 @@ const _kDefaultPANOSE = [2, 0, 5, 3, 0, 0, 0, 0, 0, 0];
 
 class OS2Table extends FontTable {
   OS2Table._(
-    TableRecordEntry? entry,
+    super.entry,
     this.version,
     this.xAvgCharWidth,
     this.usWeightClass,
@@ -84,7 +84,7 @@ class OS2Table extends FontTable {
     this.usMaxContext,
     this.usLowerOpticalPointSize,
     this.usUpperOpticalPointSize,
-  ) : super.fromTableRecordEntry(entry);
+  ) : super.fromTableRecordEntry();
 
   factory OS2Table.fromByteData(ByteData byteData, TableRecordEntry entry) {
     final version = byteData.getInt16(entry.offset);

@@ -71,7 +71,7 @@ class PathToOutlineConverter extends PathProxy {
     _isOnCurve.addAll([false, false, true]);
   }
 
-  /// Converts SVG <path> to a list of outlines.
+  /// Converts SVG &lt;path&gt; to a list of outlines.
   List<Outline> convert() {
     writeSvgPathDataToPath(path.data, this);
 

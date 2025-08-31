@@ -10,7 +10,7 @@ const _kHheaTableSize = 36;
 
 class HorizontalHeaderTable extends FontTable {
   HorizontalHeaderTable(
-    TableRecordEntry? entry,
+    super.entry,
     this.majorVersion,
     this.minorVersion,
     this.ascender,
@@ -25,7 +25,7 @@ class HorizontalHeaderTable extends FontTable {
     this.caretOffset,
     this.metricDataFormat,
     this.numberOfHMetrics,
-  ) : super.fromTableRecordEntry(entry);
+  ) : super.fromTableRecordEntry();
 
   factory HorizontalHeaderTable.fromByteData(
       ByteData byteData, TableRecordEntry entry) {

@@ -1,4 +1,4 @@
-part of icon_font_generator.otf.cff;
+part of 'cff.dart';
 
 const _kCFF2HeaderSize = 5;
 
@@ -38,7 +38,7 @@ class CFF2TableHeader implements BinaryCodable {
 
 class CFF2Table extends CFFTable implements CalculatableOffsets {
   CFF2Table(
-    TableRecordEntry? entry,
+    super.entry,
     this.header,
     this.topDict,
     this.globalSubrsData,
@@ -47,7 +47,7 @@ class CFF2Table extends CFFTable implements CalculatableOffsets {
     this.fontDictList,
     this.privateDictList,
     this.localSubrsDataList,
-  ) : super.fromTableRecordEntry(entry);
+  ) : super.fromTableRecordEntry();
 
   factory CFF2Table.fromByteData(
     ByteData byteData,

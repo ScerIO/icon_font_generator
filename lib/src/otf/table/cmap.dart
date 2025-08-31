@@ -189,8 +189,7 @@ abstract class CmapData implements BinaryCodable {
 
 class CmapByteEncodingTable extends CmapData {
   CmapByteEncodingTable(
-      int format, this.length, this.language, this.glyphIdArray)
-      : super(format);
+      super.format, this.length, this.language, this.glyphIdArray);
 
   factory CmapByteEncodingTable.fromByteData(ByteData byteData, int offset) {
     return CmapByteEncodingTable(
@@ -228,7 +227,7 @@ class CmapByteEncodingTable extends CmapData {
 
 class CmapSegmentMappingToDeltaValuesTable extends CmapData {
   CmapSegmentMappingToDeltaValuesTable(
-      int format,
+      super.format,
       this.length,
       this.language,
       this.segCount,
@@ -240,8 +239,7 @@ class CmapSegmentMappingToDeltaValuesTable extends CmapData {
       this.startCode,
       this.idDelta,
       this.idRangeOffset,
-      this.glyphIdArray)
-      : super(format);
+      this.glyphIdArray);
 
   factory CmapSegmentMappingToDeltaValuesTable.fromByteData(
       ByteData byteData, int startOffset) {
@@ -387,13 +385,13 @@ class CmapSegmentMappingToDeltaValuesTable extends CmapData {
 
 class CmapSegmentedCoverageTable extends CmapData {
   CmapSegmentedCoverageTable(
-    int format,
+    super.format,
     this.reserved,
     this.length,
     this.language,
     this.numGroups,
     this.groups,
-  ) : super(format);
+  );
 
   factory CmapSegmentedCoverageTable.fromByteData(
       ByteData byteData, int offset) {
@@ -462,10 +460,10 @@ class CmapSegmentedCoverageTable extends CmapData {
 
 class CharacterToGlyphTable extends FontTable {
   CharacterToGlyphTable(
-    TableRecordEntry? entry,
+    super.entry,
     this.header,
     this.data,
-  ) : super.fromTableRecordEntry(entry);
+  ) : super.fromTableRecordEntry();
 
   factory CharacterToGlyphTable.fromByteData(
     ByteData byteData,

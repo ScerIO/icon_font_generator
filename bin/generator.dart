@@ -8,12 +8,13 @@ import 'package:icon_font_generator/src/common/api.dart';
 import 'package:icon_font_generator/src/otf/io.dart';
 import 'package:icon_font_generator/src/utils/logger.dart';
 import 'package:path/path.dart' as p;
+import 'package:pub_semver/pub_semver.dart';
 import 'package:yaml/yaml.dart';
 
 final _argParser = ArgParser(allowTrailingOptions: true);
 final formatter = DartFormatter(
   pageWidth: 80,
-  fixes: StyleFix.all,
+  languageVersion: Version(2, 19, 0),
 );
 
 void main(List<String> args) {
@@ -47,14 +48,14 @@ void _run(CliArguments parsedArgs) {
   final isVerbose = parsedArgs.verbose ?? kDefaultVerbose;
 
   if (isVerbose) {
-    logger.setFilterLevel(Level.verbose);
+    logger.setFilterLevel(Level.trace);
   }
 
   final hasClassFile = parsedArgs.classFile != null;
   if (hasClassFile && !parsedArgs.classFile!.existsSync()) {
     parsedArgs.classFile!.createSync(recursive: true);
   } else if (hasClassFile) {
-    logger.v(
+    logger.t(
         'Output file for a Flutter class already exists (${parsedArgs.classFile!.path}) - '
         'overwriting it');
   }
@@ -62,7 +63,7 @@ void _run(CliArguments parsedArgs) {
   if (!parsedArgs.fontFile.existsSync()) {
     parsedArgs.fontFile.createSync(recursive: true);
   } else {
-    logger.v(
+    logger.t(
         'Output file for a font file already exists (${parsedArgs.fontFile.path}) - '
         'overwriting it');
   }
@@ -92,7 +93,7 @@ void _run(CliArguments parsedArgs) {
   writeToFile(parsedArgs.fontFile.path, otfResult.font);
 
   if (parsedArgs.classFile == null) {
-    logger.v('No output path for Flutter class was specified - '
+    logger.t('No output path for Flutter class was specified - '
         'skipping class generation.');
   } else {
     final fontFileName = p.basename(parsedArgs.fontFile.path);
@@ -107,7 +108,7 @@ void _run(CliArguments parsedArgs) {
 
     if (parsedArgs.format ?? kDefaultFormat) {
       try {
-        logger.v('Formatting Flutter class generation.');
+        logger.t('Formatting Flutter class generation.');
         classString = formatter.format(classString);
       } on Object catch (e) {
         logger.e(e.toString());

@@ -16,7 +16,7 @@ const _kTableSizeForVersion = {
 };
 
 class MaximumProfileTable extends FontTable {
-  MaximumProfileTable.v0(TableRecordEntry? entry, this.numGlyphs)
+  MaximumProfileTable.v0(super.entry, this.numGlyphs)
       : version = _kVersion0,
         maxPoints = null,
         maxContours = null,
@@ -31,10 +31,10 @@ class MaximumProfileTable extends FontTable {
         maxSizeOfInstructions = null,
         maxComponentElements = null,
         maxComponentDepth = null,
-        super.fromTableRecordEntry(entry);
+        super.fromTableRecordEntry();
 
   MaximumProfileTable.v1(
-      TableRecordEntry? entry,
+      super.entry,
       this.numGlyphs,
       this.maxPoints,
       this.maxContours,
@@ -50,7 +50,7 @@ class MaximumProfileTable extends FontTable {
       this.maxComponentElements,
       this.maxComponentDepth)
       : version = _kVersion1,
-        super.fromTableRecordEntry(entry);
+        super.fromTableRecordEntry();
 
   factory MaximumProfileTable.create(int numGlyphs, GlyphDataTable? glyf) {
     final isOpenType = glyf == null;

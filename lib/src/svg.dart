@@ -1,3 +1,3 @@
-library icon_font_generator.svg;
+library;
 
 export 'svg/svg.dart';

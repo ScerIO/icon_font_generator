@@ -49,10 +49,10 @@ class LongHorMetric implements BinaryCodable {
 
 class HorizontalMetricsTable extends FontTable {
   HorizontalMetricsTable(
-    TableRecordEntry? entry,
+    super.entry,
     this.hMetrics,
     this.leftSideBearings,
-  ) : super.fromTableRecordEntry(entry);
+  ) : super.fromTableRecordEntry();
 
   factory HorizontalMetricsTable.fromByteData(ByteData byteData,
       TableRecordEntry entry, HorizontalHeaderTable hhea, int numGlyphs) {

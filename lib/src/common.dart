@@ -1,4 +1,4 @@
-library icon_font_generator.common;
+library;
 
 export 'common/api.dart';
 export 'common/generic_glyph.dart';

@@ -11,7 +11,7 @@ import 'operand.dart';
 import 'operator.dart';
 
 class CharStringOperand extends CFFOperand {
-  CharStringOperand(num? value, [int? size]) : super(value, size);
+  CharStringOperand(super.value, [super.size]);
 
   factory CharStringOperand.fromByteData(
       ByteData byteData, int offset, int b0) {

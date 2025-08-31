@@ -1,4 +1,4 @@
-part of icon_font_generator.otf.cff;
+part of '../table/cff.dart';
 
 const _kFormat0 = 0;
 const _kFormat1 = 1;
@@ -29,7 +29,7 @@ abstract class CharsetEntry implements BinaryCodable {
 }
 
 class CharsetEntryFormat1 extends CharsetEntry {
-  CharsetEntryFormat1(int format, this.rangeList) : super(format);
+  CharsetEntryFormat1(super.format, this.rangeList);
 
   factory CharsetEntryFormat1.fromByteData(ByteData byteData, int glyphCount) {
     final rangeList = <Range1>[];

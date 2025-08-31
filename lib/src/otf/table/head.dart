@@ -20,7 +20,7 @@ const _kHeaderTableSize = 54;
 
 class HeaderTable extends FontTable {
   HeaderTable(
-      TableRecordEntry? entry,
+      super.entry,
       this.fontRevision,
       this.checkSumAdjustment,
       this.flags,
@@ -39,10 +39,10 @@ class HeaderTable extends FontTable {
         fontDirectionHint = 2,
         glyphDataFormat = 0,
         magicNumber = _kMagicNumber,
-        super.fromTableRecordEntry(entry);
+        super.fromTableRecordEntry();
 
   HeaderTable._(
-      TableRecordEntry entry,
+      TableRecordEntry super.entry,
       this.majorVersion,
       this.minorVersion,
       this.fontRevision,
@@ -61,7 +61,7 @@ class HeaderTable extends FontTable {
       this.fontDirectionHint,
       this.indexToLocFormat,
       this.glyphDataFormat)
-      : super.fromTableRecordEntry(entry);
+      : super.fromTableRecordEntry();
 
   factory HeaderTable.fromByteData(ByteData data, TableRecordEntry entry) =>
       HeaderTable._(

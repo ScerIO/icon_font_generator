@@ -1,4 +1,4 @@
-part of icon_font_generator.otf.cff;
+part of '../table/cff.dart';
 
 final _cffStandardStringCount = _kCffStandardStringList.length;
 

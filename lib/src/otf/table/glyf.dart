@@ -12,9 +12,9 @@ import 'table_record_entry.dart';
 
 class GlyphDataTable extends FontTable {
   GlyphDataTable(
-    TableRecordEntry? entry,
+    super.entry,
     this.glyphList,
-  ) : super.fromTableRecordEntry(entry);
+  ) : super.fromTableRecordEntry();
 
   factory GlyphDataTable.fromByteData(ByteData byteData, TableRecordEntry entry,
       IndexToLocationTable locationTable, int numGlyphs) {

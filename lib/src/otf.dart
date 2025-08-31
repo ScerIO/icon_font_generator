@@ -1,4 +1,4 @@
-library icon_font_generator.otf;
+library;
 
 export 'otf/otf.dart';
 export 'otf/reader.dart';
