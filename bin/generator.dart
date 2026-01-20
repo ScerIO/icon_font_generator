@@ -79,7 +79,7 @@ void _run(CliArguments parsedArgs) {
 
   final svgMap = {
     for (final f in svgFileList)
-      p.basenameWithoutExtension(f.path): File(f.path).readAsStringSync(),
+      p.withoutExtension(p.relative(f.path, from: parsedArgs.svgDir.path)): File(f.path).readAsStringSync(),
   };
 
   final otfResult = svgToOtf(

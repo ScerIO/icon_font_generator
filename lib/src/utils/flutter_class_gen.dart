@@ -121,6 +121,34 @@ class FlutterClassGenerator {
     ];
   }
 
+  String _generateFileMapEntry(int index) {
+    final glyphMeta = glyphList[index].metadata;
+    final iconName = glyphMeta.name!;
+    final varName = _iconVarNames[index];
+    return '  "$iconName": $varName,';
+  }
+
+  List<String> _generateFileMap() {
+    return [
+      '',
+      '/// Maps input file paths to generated IconData objects.',
+      '/// ',
+      '/// Paths are relative to the input SVG directory, without file extensions.',
+      '/// ',
+      '/// For example, if the tool is run in recursive mode and the input SVG ',
+      '/// directory contains',
+      '/// ```',
+      '/// ├── apple.svg',
+      '/// └── subdir',
+      '///    └── carrot.svg',
+      '/// ```',
+      '/// then this map will contain keys `apple` and `subdir/carrot`.',
+      'static const Map<String, IconData> fromFileName = {',
+      for (var i = 0; i < glyphList.length; i++) _generateFileMapEntry(i),
+      '};',
+    ];
+  }
+
   /// Generates content for a class' file.
   String generate() {
     final classContent = [
@@ -128,6 +156,7 @@ class FlutterClassGenerator {
       '',
       _fontFamilyConst,
       if (_hasPackage) _fontPackageConst,
+      ..._generateFileMap(),
       for (var i = 0; i < glyphList.length; i++) ..._generateIconConst(i),
     ];
 
