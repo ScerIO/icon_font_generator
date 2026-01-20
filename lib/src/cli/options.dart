@@ -20,7 +20,7 @@ void defineOptions(ArgParser argParser) {
     )
     ..addOption(
       kOptionNames[CliArgument.fontPackage]!,
-      abbr: 'f',
+      abbr: 'p',
       help:
           'Name of a package that provides a font. Used to provide a font through package dependency.',
       valueHelp: 'name',

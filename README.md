@@ -51,7 +51,7 @@ Name of a package that provides a font. Used to provide a font through package d
 Format dart generated code.
 
 Font options:
-- `-f` or `--font-name=<name>`
+- `-n` or `--font-name=<name>`
 Name for a generated font.
 - `--[no-]normalize`
 Enables glyph normalization for the font.
