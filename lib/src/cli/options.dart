@@ -43,6 +43,11 @@ void defineOptions(ArgParser argParser) {
           'Enables glyph normalization for the font. Disable this if every icon has the same size and positioning.',
       defaultsTo: true,
     )
+    ..addOption(
+      kOptionNames[CliArgument.fontWeight]!,
+      help: 'Provide font weight (from 100 to 900).',
+      defaultsTo: '400',
+    )
     ..addFlag(
       kOptionNames[CliArgument.ignoreShapes]!,
       help: 'Disables SVG shape-to-path conversion (circle, rect, etc.).',

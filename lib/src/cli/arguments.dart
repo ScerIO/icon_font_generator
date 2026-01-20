@@ -43,6 +43,7 @@ const kOptionNames = EnumClass<CliArgument, String>({
   CliArgument.fontName: 'font-name',
   CliArgument.normalize: 'normalize',
   CliArgument.ignoreShapes: 'ignore-shapes',
+  CliArgument.fontWeight: 'font-weight',
 
   CliArgument.recursive: 'recursive',
   CliArgument.verbose: 'verbose',
@@ -90,6 +91,7 @@ enum CliArgument {
   fontName,
   ignoreShapes,
   normalize,
+  fontWeight,
 
   // Others
   recursive,
@@ -112,6 +114,7 @@ class CliArguments {
     this.fontName,
     this.recursive,
     this.ignoreShapes,
+    this.fontWeight,
     this.normalize,
     this.verbose,
     this.configFile,
@@ -134,6 +137,7 @@ class CliArguments {
       map[CliArgument.fontName] as String?,
       map[CliArgument.recursive] as bool?,
       map[CliArgument.ignoreShapes] as bool?,
+      int.tryParse((map[CliArgument.fontWeight] as String?) ?? ''),
       map[CliArgument.normalize] as bool?,
       map[CliArgument.verbose] as bool?,
       map[CliArgument.configFile] as File?,
@@ -149,6 +153,7 @@ class CliArguments {
   final String? fontName;
   final bool? recursive;
   final bool? ignoreShapes;
+  final int? fontWeight;
   final bool? normalize;
   final bool? verbose;
   final File? configFile;
