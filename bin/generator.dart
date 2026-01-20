@@ -87,6 +87,7 @@ void _run(CliArguments parsedArgs) {
     ignoreShapes: parsedArgs.ignoreShapes,
     normalize: parsedArgs.normalize,
     fontName: parsedArgs.fontName,
+    includeMeta: parsedArgs.includeMeta,
   );
 
   writeToFile(parsedArgs.fontFile.path, otfResult.font);

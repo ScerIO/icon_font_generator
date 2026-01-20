@@ -49,6 +49,8 @@ Name for a generated class.
 Name of a package that provides a font. Used to provide a font through package dependency.
 - `--[no-]format`
 Format dart generated code.
+- `--[no-]metadata`
+Includes base64-encoded images of the font in comments.
 
 Font options:
 - `-f` or `--font-name=<name>`
@@ -102,6 +104,7 @@ icon_font:
   class_name: "MyIcons"
   package: my_font_package
   format: true
+  metadata: true
 
   font_name: "My Icons"
   normalize: true

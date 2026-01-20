@@ -25,11 +25,13 @@ const _kArgAllowedTypes = <CliArgument, List<Type>>{
   CliArgument.format: [bool],
   CliArgument.verbose: [bool],
   CliArgument.help: [bool],
+  CliArgument.includeMeta: [bool],
   CliArgument.configFile: [String],
 };
 
 const kDefaultVerbose = false;
 const kDefaultFormat = false;
+const kDefaultIncludeMeta = true;
 const kDefaultRecursive = false;
 
 const kOptionNames = EnumClass<CliArgument, String>({
@@ -39,6 +41,7 @@ const kOptionNames = EnumClass<CliArgument, String>({
   CliArgument.className: 'class-name',
   CliArgument.fontPackage: 'package',
   CliArgument.format: 'format',
+  CliArgument.includeMeta: 'metadata',
 
   CliArgument.fontName: 'font-name',
   CliArgument.normalize: 'normalize',
@@ -59,6 +62,7 @@ const kConfigKeys = EnumClass<CliArgument, String>({
   CliArgument.className: 'class_name',
   CliArgument.fontPackage: 'package',
   CliArgument.format: 'format',
+  CliArgument.includeMeta: 'metadata',
 
   CliArgument.fontName: 'font_name',
   CliArgument.normalize: 'normalize',
@@ -85,6 +89,7 @@ enum CliArgument {
   className,
   fontPackage,
   format,
+  includeMeta,
 
   // Font-related
   fontName,
@@ -109,6 +114,7 @@ class CliArguments {
     this.className,
     this.fontPackage,
     this.format,
+    this.includeMeta,
     this.fontName,
     this.recursive,
     this.ignoreShapes,
@@ -131,6 +137,7 @@ class CliArguments {
       map[CliArgument.className] as String?,
       map[CliArgument.fontPackage] as String?,
       map[CliArgument.format] as bool?,
+      map[CliArgument.includeMeta] as bool?,
       map[CliArgument.fontName] as String?,
       map[CliArgument.recursive] as bool?,
       map[CliArgument.ignoreShapes] as bool?,
@@ -146,6 +153,7 @@ class CliArguments {
   final String? className;
   final String? fontPackage;
   final bool? format;
+  final bool? includeMeta;
   final String? fontName;
   final bool? recursive;
   final bool? ignoreShapes;
