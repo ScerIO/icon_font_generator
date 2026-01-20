@@ -20,7 +20,7 @@ Compatible with dart2js and dart2native.
 $ flutter pub add --dev icon_font_generator
 
 # And it's ready to go:
-$ flutter pub run icon_font_generator:generate <input-svg-dir> <output-font-file> [options]
+$ flutter pub run icon_font_generator:generator <input-svg-dir> <output-font-file> [options]
 ```
 
 ### or [Globally activate][] the package:
