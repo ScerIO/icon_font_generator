@@ -53,7 +53,7 @@ class FlutterClassGenerator {
 
     return glyphList.map((g) {
       final baseName =
-          _getVarName(p.basenameWithoutExtension(g.metadata.name!)).camelCase;
+          _getVarName(p.basenameWithoutExtension(g.metadata.name!).camelCase);
       final usingDefaultName = baseName.isEmpty;
 
       var variableName = usingDefaultName ? _kUnnamedIconName : baseName;
