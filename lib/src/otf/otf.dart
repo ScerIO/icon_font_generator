@@ -68,6 +68,7 @@ class OpenTypeFont implements BinaryCodable {
     bool? useOpenType,
     bool? usePostV2,
     bool? normalize,
+    Map<String, int>? charCodes,
   }) {
     if (fontName?.isEmpty ?? false) {
       fontName = null;
@@ -80,7 +81,9 @@ class OpenTypeFont implements BinaryCodable {
     normalize ??= true;
     usePostV2 ??= false;
 
-    glyphList = _generateCharCodes(glyphList);
+    glyphList = charCodes != null
+        ? _applyCharCodes(glyphList, charCodes)
+        : _generateCharCodes(glyphList);
 
     // A power of two is recommended only for TrueType outlines
     final unitsPerEm =
@@ -290,6 +293,61 @@ class OpenTypeFont implements BinaryCodable {
     for (var i = 0; i < glyphList.length; i++) {
       glyphList[i].metadata.charCode = kUnicodePrivateUseAreaStart + i;
     }
+    return glyphList;
+  }
+
+  // Lowest assignable codepoint: must be above the reserved space glyph (0x20)
+  // so custom glyphs always sort after it in the cmap.
+  static const _kMinCharCode = kUnicodeSpaceCharCode + 1;
+
+  // Highest assignable codepoint: the cmap format 4 subtable is BMP-only and
+  // reserves 0xFFFF as its mandatory terminator segment.
+  static const _kMaxCharCode = 0xFFFF - 1;
+
+  // The UTF-16 surrogate block is reserved and is never a valid Unicode scalar
+  // value, so a surrogate written into the cmap yields a font consumers cannot
+  // look up. It falls inside the BMP range above, so exclude it explicitly.
+  static const _kSurrogateStart = 0xD800;
+  static const _kSurrogateEnd = 0xDFFF;
+
+  static List<GenericGlyph> _applyCharCodes(
+      List<GenericGlyph> glyphList, Map<String, int> charCodes) {
+    final usedCharCodes = <int>{};
+
+    for (final glyph in glyphList) {
+      final name = glyph.metadata.name;
+      final charCode = charCodes[name];
+
+      if (charCode == null) {
+        throw ArgumentError('No codepoint provided for glyph "$name"');
+      }
+
+      // Codepoints outside this range corrupt the BMP-only cmap format 4 and
+      // OS/2 tables (values above 0xFFFF are silently truncated by the 16-bit
+      // encoders) or collide with the reserved space/terminator codepoints;
+      // surrogates are reserved and never valid cmap entries.
+      if (charCode < _kMinCharCode ||
+          charCode > _kMaxCharCode ||
+          (charCode >= _kSurrogateStart && charCode <= _kSurrogateEnd)) {
+        throw ArgumentError('Codepoint for glyph "$name" must be in the range '
+            '$_kMinCharCode..$_kMaxCharCode (BMP, excluding the reserved '
+            'space, cmap terminator, and UTF-16 surrogate codepoints), '
+            'got $charCode');
+      }
+
+      if (!usedCharCodes.add(charCode)) {
+        throw ArgumentError(
+            'Duplicate codepoint $charCode assigned to glyph "$name"');
+      }
+
+      glyph.metadata.charCode = charCode;
+    }
+
+    // cmap format 4/12 segment generation assumes char codes are ascending in
+    // glyph order, so sort glyphs by their assigned codepoint before returning.
+    glyphList
+        .sort((a, b) => a.metadata.charCode!.compareTo(b.metadata.charCode!));
+
     return glyphList;
   }
 

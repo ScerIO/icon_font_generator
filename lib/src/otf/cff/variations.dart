@@ -97,7 +97,9 @@ class VariationRegionList extends BinaryCodable {
 
   @override
   void encodeToBinary(ByteData byteData) {
-    byteData..setUint16(0, axisCount)..setUint16(2, regionCount);
+    byteData
+      ..setUint16(0, axisCount)
+      ..setUint16(2, regionCount);
 
     for (var r = 0; r < regionCount; r++) {
       for (var a = 0; a < axisCount; a++) {

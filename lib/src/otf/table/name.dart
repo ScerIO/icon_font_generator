@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import '../../common/codable/binary.dart';
 import '../../common/constant.dart';
 import '../../utils/enum_class.dart';
+import '../../utils/misc.dart';
 import '../../utils/otf.dart';
 import '../../utils/ucs2.dart';
 import '../debugger.dart';
@@ -263,7 +264,7 @@ class NamingTableFormat0 extends NamingTable {
 
   factory NamingTableFormat0.create(
       String fontName, String? description, Revision revision) {
-    final now = DateTime.now();
+    final now = MockableDateTime.now();
 
     /// Values for name ids in sorted order
     final stringForNameMap = <NameID, String>{

@@ -62,7 +62,9 @@ class FeatureTable implements BinaryCodable {
 
   @override
   void encodeToBinary(ByteData byteData) {
-    byteData..setUint16(0, featureParams)..setUint16(2, lookupIndexCount);
+    byteData
+      ..setUint16(0, featureParams)
+      ..setUint16(2, lookupIndexCount);
 
     for (var i = 0; i < lookupIndexCount; i++) {
       byteData.setInt16(4 + 2 * i, lookupListIndices[i]);
